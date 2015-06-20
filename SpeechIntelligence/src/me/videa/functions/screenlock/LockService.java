@@ -12,7 +12,6 @@ import android.util.Log;
 public class LockService extends Service {
 	private String TAG = "LockService";
 	private Intent zdLockIntent = null;
-
 	@Override
 	public IBinder onBind(Intent arg0) {
 		return null;

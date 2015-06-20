@@ -52,27 +52,40 @@ public final class R {
         public static final int txt_size=0x7f060003;
     }
     public static final class drawable {
-        public static final int cancel=0x7f020000;
-        public static final int cancel_button=0x7f020001;
-        public static final int cancel_p=0x7f020002;
-        public static final int icon=0x7f020003;
+        public static final int bg1=0x7f020000;
+        public static final int cancel=0x7f020001;
+        public static final int cancel_button=0x7f020002;
+        public static final int cancel_p=0x7f020003;
+        public static final int ic_code_scan_shortcut=0x7f020004;
+        public static final int ic_lockscreen_message_activated=0x7f020005;
+        public static final int ic_lockscreen_message_normal=0x7f020006;
+        public static final int ic_lockscreen_phone_activated=0x7f020007;
+        public static final int ic_lockscreen_phone_normal=0x7f020008;
+        public static final int ic_lockscreen_unlock_activated=0x7f020009;
+        public static final int ic_lockscreen_unlock_normal=0x7f02000a;
+        public static final int ic_tab_theme_normal=0x7f02000b;
+        public static final int ic_tab_theme_selected=0x7f02000c;
+        public static final int icon=0x7f02000d;
         /**  画面背景色 
          */
-        public static final int layout_backgroud=0x7f02000f;
+        public static final int layout_backgroud=0x7f02001c;
         /**  分割线背景色 
          */
-        public static final int line_background=0x7f020010;
-        public static final int list_bg_color=0x7f020004;
-        public static final int main_setting_btn_np=0x7f020005;
-        public static final int name_left=0x7f020006;
-        public static final int name_right=0x7f020007;
-        public static final int ok=0x7f020008;
-        public static final int ok_button=0x7f020009;
-        public static final int ok_d=0x7f02000a;
-        public static final int ok_p=0x7f02000b;
-        public static final int setting=0x7f02000c;
-        public static final int setting_p=0x7f02000d;
-        public static final int superman=0x7f02000e;
+        public static final int line_background=0x7f02001d;
+        public static final int list_bg_color=0x7f02000e;
+        public static final int lockscre_pressed=0x7f02000f;
+        public static final int lockscreen_normal=0x7f020010;
+        public static final int main_setting_btn_np=0x7f020011;
+        public static final int name_left=0x7f020012;
+        public static final int name_right=0x7f020013;
+        public static final int ok=0x7f020014;
+        public static final int ok_button=0x7f020015;
+        public static final int ok_d=0x7f020016;
+        public static final int ok_p=0x7f020017;
+        public static final int setting=0x7f020018;
+        public static final int setting_p=0x7f020019;
+        public static final int superman=0x7f02001a;
+        public static final int template_checkbox_normal=0x7f02001b;
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f0a001d;
@@ -129,16 +142,17 @@ public final class R {
         public static final int understander_text=0x7f0a002d;
     }
     public static final class layout {
-        public static final int iatdemo=0x7f030000;
-        public static final int isedemo=0x7f030001;
-        public static final int isrdemo=0x7f030002;
-        public static final int list_items=0x7f030003;
-        public static final int main=0x7f030004;
-        public static final int superman_alertdialog=0x7f030005;
-        public static final int title=0x7f030006;
-        public static final int ttsdemo=0x7f030007;
-        public static final int understander=0x7f030008;
-        public static final int voice_main_activity=0x7f030009;
+        public static final int activity_screen_lock=0x7f030000;
+        public static final int iatdemo=0x7f030001;
+        public static final int isedemo=0x7f030002;
+        public static final int isrdemo=0x7f030003;
+        public static final int list_items=0x7f030004;
+        public static final int main=0x7f030005;
+        public static final int superman_alertdialog=0x7f030006;
+        public static final int title=0x7f030007;
+        public static final int ttsdemo=0x7f030008;
+        public static final int understander=0x7f030009;
+        public static final int voice_main_activity=0x7f03000a;
     }
     public static final class string {
         /**  请替换成在语音云官网申请的appid 

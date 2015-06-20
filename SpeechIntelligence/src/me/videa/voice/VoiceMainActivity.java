@@ -7,6 +7,7 @@ import me.videa.base.functions.Contacts;
 import me.videa.base.functions.GetInstalledApplications;
 import me.videa.base.functions.MakeCall;
 import me.videa.base.functions.SendMessage;
+import me.videa.functions.screenlock.ShowLockActivity;
 import me.videa.voice.async.LocalDataAsyncTask;
 import me.videa.voice.service.SpeechIntelligence;
 import me.videa.voice.service.SpeechIntelligence.LocalBinder;
@@ -193,7 +194,11 @@ public class VoiceMainActivity extends Activity implements OnClickListener{
 			break;
 		// 取消听写
 		case R.id.iat_service:
-			new GetInstalledApplications(VoiceMainActivity.this).getInstalledPackages();
+			
+			Intent intent = new Intent();
+			intent.setClass(VoiceMainActivity.this, ShowLockActivity.class);
+			VoiceMainActivity.this.startActivity(intent);
+//			new GetInstalledApplications(VoiceMainActivity.this).getInstalledPackages(); //测试获取已经安装的应用
 //			new SendMessage(VoiceMainActivity.this).sendMessage("18905166144", "这是一条测试短信");
 //			new MakeCall(VoiceMainActivity.this).makeCall("18905166144"); //测试拨打电话
 //			new LocalDataAsyncTask(VoiceMainActivity.this, null).execute("");//测试读取联系人

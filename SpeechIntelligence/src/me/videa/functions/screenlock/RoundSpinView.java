@@ -1,5 +1,7 @@
 package me.videa.functions.screenlock;
 
+import com.iflytek.voicedemo.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,7 +10,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -19,6 +23,7 @@ public class RoundSpinView extends View {
 	
 	private Activity act;
 	private Context ctx;
+	private Handler mLockHandler;
 	
 	private Paint mPaint = new Paint();
 	
@@ -44,6 +49,14 @@ public class RoundSpinView extends View {
 	private Bitmap[] normal_img_bitmap = new Bitmap[STONE_COUNT];
 	private Bitmap[] select_img_bitmap = new Bitmap[STONE_COUNT];
 	
+	/**
+	 * 构造函数
+	 * @param context
+	 * @param act
+	 * @param px
+	 * @param py
+	 * @param radius
+	 */
 	public RoundSpinView(Context context,Activity act, int px, int py, int radius) {
 		super(context);
 		this.ctx = context;
@@ -214,23 +227,27 @@ public class RoundSpinView extends View {
 		if (getDistance(x, y) >= mRadius) {
 			if (centerStones.angle <= (mStones[0].angle + 15) && centerStones.angle >= (mStones[0].angle - 15) && mStones[0].isVisible) {
 				islocksuc = true;
-				Log.i(TAG,"解锁-短信 跳转到短信界面");
-				act.finish();
+				Log.i(TAG,"解锁-短信 跳转到短信界面"); //右
+				sendHandlerMessage(7);
+//				act.finish();
 			}
 			if (centerStones.angle <= (mStones[1].angle + 15) && centerStones.angle >= (mStones[1].angle - 15) && mStones[1].isVisible) {
 				islocksuc = true;
-				Log.i(TAG,"解锁-解锁");
-				act.finish();
+				Log.i(TAG,"解锁-解锁");//下
+				sendHandlerMessage(5);
+//				act.finish();
 			}
 			if (centerStones.angle <= (mStones[2].angle + 15) && centerStones.angle >= (mStones[2].angle - 15) && mStones[2].isVisible) {
 				islocksuc = true;
-				Log.i(TAG,"解锁-电话 跳转到电话界面");
-				act.finish();
+				Log.i(TAG,"解锁-电话 跳转到电话界面"); //左
+				sendHandlerMessage(6);
+//				act.finish();
 			}
 			if (centerStones.angle <= (mStones[3].angle + 15) && centerStones.angle >= (mStones[3].angle - 15) && mStones[3].isVisible) {
 				islocksuc = true;
-				Log.i(TAG,"解锁-相机 跳转到相机界面");
-				act.finish();
+				Log.i(TAG,"解锁-相机 跳转到相机界面");  //上
+				sendHandlerMessage(4);
+//				act.finish();
 			}
 		} 
 		if(!islocksuc) { // 未解锁成功
@@ -354,5 +371,22 @@ public class RoundSpinView extends View {
 		public float y;
 		// 是否可见
 		public boolean isVisible = false;
+	}
+	
+	/**
+	 * 设置解锁动作的Handler
+	 * @param handler
+	 */
+	public void setLockHandler(Handler handler){
+		this.mLockHandler = handler;
+	}
+	
+	/**
+	 * 发送Message至LockHander
+	 */
+	private void sendHandlerMessage(int what){
+		Message message = new Message();
+		message.what = what;
+		mLockHandler.sendMessage(message);
 	}
 }
