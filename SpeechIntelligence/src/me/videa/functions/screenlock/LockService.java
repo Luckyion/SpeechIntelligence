@@ -62,6 +62,7 @@ public class LockService extends Service {
 				mKeyguardLock.disableKeyguard();
 				startActivity(zdLockIntent);
 			}
+			this.abortBroadcast();
 		}
 	};
 }

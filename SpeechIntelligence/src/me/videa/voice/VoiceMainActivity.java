@@ -20,8 +20,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -52,6 +54,7 @@ public class VoiceMainActivity extends Activity implements OnClickListener{
 	private static String TAG = VoiceMainActivity.class.getSimpleName();
 	
 	private final String VOICE_SERVICE = "me.videa.VoiceService";
+	private final String LOCK_SERVICE = "me.videa.LockService";
 	
 	// 语音听写对象
 	private SpeechRecognizer mIat;
@@ -95,6 +98,8 @@ public class VoiceMainActivity extends Activity implements OnClickListener{
 		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 		mToast.setText("初始化完成");
 		mToast.show();
+		startService(LOCK_SERVICE);
+		
 	}
 	
 	
@@ -368,9 +373,9 @@ public class VoiceMainActivity extends Activity implements OnClickListener{
 	/**
 	 * 启动服务
 	 */
-	private void startService(){
+	private void startService(String serviceName){
 //		Intent service = new Intent(this, SpeechIntelligence.class);
-		Intent service = new Intent(VOICE_SERVICE);
+		Intent service = new Intent(serviceName);
 		VoiceMainActivity.this.startService(service);
 	}
 	

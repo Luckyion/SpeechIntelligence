@@ -68,18 +68,22 @@ public class ShowLockActivity extends Activity implements VioceLockCallback{
 				break;
 			case 4://上
 				Log.d(TAG, "上");
-//				new StartSpecificApplication(ShowLockActivity.this)
-//					.startSpecificApplication(Intent.ACTION_SENDTO, "");
+				Intent intent = new Intent(Intent.ACTION_DIAL);  
+		        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK  
+		                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);  
+		        ShowLockActivity.this.startActivity(intent);  
 				isUnlock = true;
 				break;
 			case 5://下
 				Log.d(TAG, "下");
 //				new StartSpecificApplication(ShowLockActivity.this)
-//					.startSpecificApplication(Intent.ACTION_CALL_BUTTON, "");
+//					.startSpecificApplication("com.android.camera", "com.android.camera.Camera");
 				isUnlock = true;
 				break;
 			case 6://左
 				Log.d(TAG, "左");
+//				new StartSpecificApplication(ShowLockActivity.this)
+//				.startSpecificApplication("com.android.mms", "com.android.mms.ui.ConversationList");
 				isUnlock = true;
 				break;
 			case 7://右

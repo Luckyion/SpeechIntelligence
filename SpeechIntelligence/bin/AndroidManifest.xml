@@ -22,6 +22,7 @@
 	<uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
 	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 	<uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" /> 
+	<uses-permission android:name="android.permission.DISABLE_KEYGUARD" /> 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
 
     <application
@@ -63,6 +64,13 @@
                 <action android:name="me.videa.VoiceService"></action>
                 <category android:name="android.intent.category.default" />　　
             </intent-filter>　　
+        </service>
+        <service android:name="me.videa.functions.screenlock.LockService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="me.videa.LockService"/>
+                <category android:name="android.intent.category.default"/>
+            </intent-filter>
         </service>
 
         <activity android:name="com.iflytek.speech.setting.TtsSettings" >

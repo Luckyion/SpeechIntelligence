@@ -1,5 +1,6 @@
 package me.videa.base.functions;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -30,8 +31,14 @@ public class StartSpecificApplication {
 	 * 根据包名启动应用程序
 	 * @param packageName 包名称
 	 */
-	public void startSpecificApplication(String action, String uri){
-		Intent intentPhone = new Intent(action, Uri.parse("tel:" + uri));
+	public void startSpecificApplication(String pkg, String cls){
+		Intent intentPhone = new Intent();  
+        ComponentName comp = new ComponentName(pkg,  
+        		cls);  
+        intentPhone.setComponent(comp);  
+        intentPhone.setAction("android.intent.action.VIEW");  
+        intentPhone.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK  
+                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);  
 		mContext.startActivity(intentPhone);
 	}
 

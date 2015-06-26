@@ -227,25 +227,25 @@ public class RoundSpinView extends View {
 		if (getDistance(x, y) >= mRadius) {
 			if (centerStones.angle <= (mStones[0].angle + 15) && centerStones.angle >= (mStones[0].angle - 15) && mStones[0].isVisible) {
 				islocksuc = true;
-				Log.i(TAG,"解锁-短信 跳转到短信界面"); //右
+				Log.i(TAG,"解锁-解锁"); //右解锁-解锁
 				sendHandlerMessage(7);
 //				act.finish();
 			}
 			if (centerStones.angle <= (mStones[1].angle + 15) && centerStones.angle >= (mStones[1].angle - 15) && mStones[1].isVisible) {
 				islocksuc = true;
-				Log.i(TAG,"解锁-解锁");//下
+				Log.i(TAG,"解锁-相机 跳转到相机界面");//下
 				sendHandlerMessage(5);
 //				act.finish();
 			}
 			if (centerStones.angle <= (mStones[2].angle + 15) && centerStones.angle >= (mStones[2].angle - 15) && mStones[2].isVisible) {
 				islocksuc = true;
-				Log.i(TAG,"解锁-电话 跳转到电话界面"); //左
+				Log.i(TAG,"解锁-跳转到短信界面"); //左
 				sendHandlerMessage(6);
 //				act.finish();
 			}
 			if (centerStones.angle <= (mStones[3].angle + 15) && centerStones.angle >= (mStones[3].angle - 15) && mStones[3].isVisible) {
 				islocksuc = true;
-				Log.i(TAG,"解锁-相机 跳转到相机界面");  //上
+				Log.i(TAG,"解锁-电话 跳转到电话界面");  //上
 				sendHandlerMessage(4);
 //				act.finish();
 			}
