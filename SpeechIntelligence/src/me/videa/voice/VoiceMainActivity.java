@@ -8,6 +8,7 @@ import me.videa.base.functions.GetInstalledApplications;
 import me.videa.base.functions.MakeCall;
 import me.videa.base.functions.SendMessage;
 import me.videa.functions.screenlock.ShowLockActivity;
+import me.videa.show.RemoteFileShow;
 import me.videa.voice.async.LocalDataAsyncTask;
 import me.videa.voice.service.SpeechIntelligence;
 import me.videa.voice.service.SpeechIntelligence.LocalBinder;
@@ -201,7 +202,7 @@ public class VoiceMainActivity extends Activity implements OnClickListener{
 		case R.id.iat_service:
 			
 			Intent intent = new Intent();
-			intent.setClass(VoiceMainActivity.this, ShowLockActivity.class);
+			intent.setClass(VoiceMainActivity.this, RemoteFileShow.class);
 			VoiceMainActivity.this.startActivity(intent);
 //			new GetInstalledApplications(VoiceMainActivity.this).getInstalledPackages(); //测试获取已经安装的应用
 //			new SendMessage(VoiceMainActivity.this).sendMessage("18905166144", "这是一条测试短信");

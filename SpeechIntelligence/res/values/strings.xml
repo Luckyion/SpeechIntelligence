@@ -153,4 +153,12 @@
     <string name="superman_cancel">取 消</string>
     <string name="superman_title">来 吧 !</string>
     <string name="superman_content">让我把你的应用变的能听会说吧！</string>
+    
+    <!-- ********************************************** -->
+    <string name="current_path">当前目录:</string>
+    <string name="current_path_name">/</string>
+    <string name="current_content">文件/目录</string>
+    <string name="file_size">0kb</string>
+    <string name="img_content">默认的图片</string>
+    <string name="load_err">对不起，网络开小差啦(≧▽≦)</string>
 </resources>

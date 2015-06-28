@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
+    <color name="black">#000000</color>
     <!-- 画面背景色 -->
     <drawable name="layout_backgroud">#000000</drawable>
     
