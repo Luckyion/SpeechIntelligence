@@ -9,10 +9,11 @@ package com.iflytek.voicedemo;
 
 public final class R {
     public static final class anim {
-        public static final int slide_in_from_bottom=0x7f040000;
-        public static final int slide_in_from_top=0x7f040001;
-        public static final int slide_out_to_bottom=0x7f040002;
-        public static final int slide_out_to_top=0x7f040003;
+        public static final int loading=0x7f040000;
+        public static final int slide_in_from_bottom=0x7f040001;
+        public static final int slide_in_from_top=0x7f040002;
+        public static final int slide_out_to_bottom=0x7f040003;
+        public static final int slide_out_to_top=0x7f040004;
     }
     public static final class array {
         public static final int category_entries=0x7f0a000a;
@@ -202,42 +203,54 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int cancel=0x7f020001;
         public static final int cancel_button=0x7f020002;
         public static final int cancel_p=0x7f020003;
-        public static final int default_deliver=0x7f020004;
-        public static final int default_ptr_flip=0x7f020005;
-        public static final int default_ptr_rotate=0x7f020006;
-        public static final int ic_code_scan_shortcut=0x7f020007;
-        public static final int ic_lockscreen_message_activated=0x7f020008;
-        public static final int ic_lockscreen_message_normal=0x7f020009;
-        public static final int ic_lockscreen_phone_activated=0x7f02000a;
-        public static final int ic_lockscreen_phone_normal=0x7f02000b;
-        public static final int ic_lockscreen_unlock_activated=0x7f02000c;
-        public static final int ic_lockscreen_unlock_normal=0x7f02000d;
-        public static final int ic_tab_theme_normal=0x7f02000e;
-        public static final int ic_tab_theme_selected=0x7f02000f;
-        public static final int icon=0x7f020010;
-        public static final int indicator_arrow=0x7f020011;
-        public static final int indicator_bg_bottom=0x7f020012;
-        public static final int indicator_bg_top=0x7f020013;
+        public static final int common_loading3_0=0x7f020004;
+        public static final int common_loading3_1=0x7f020005;
+        public static final int common_loading3_10=0x7f020006;
+        public static final int common_loading3_11=0x7f020007;
+        public static final int common_loading3_2=0x7f020008;
+        public static final int common_loading3_3=0x7f020009;
+        public static final int common_loading3_4=0x7f02000a;
+        public static final int common_loading3_5=0x7f02000b;
+        public static final int common_loading3_6=0x7f02000c;
+        public static final int common_loading3_7=0x7f02000d;
+        public static final int common_loading3_8=0x7f02000e;
+        public static final int common_loading3_9=0x7f02000f;
+        public static final int default_deliver=0x7f020010;
+        public static final int default_ptr_flip=0x7f020011;
+        public static final int default_ptr_rotate=0x7f020012;
+        public static final int ic_code_scan_shortcut=0x7f020013;
+        public static final int ic_lockscreen_message_activated=0x7f020014;
+        public static final int ic_lockscreen_message_normal=0x7f020015;
+        public static final int ic_lockscreen_phone_activated=0x7f020016;
+        public static final int ic_lockscreen_phone_normal=0x7f020017;
+        public static final int ic_lockscreen_unlock_activated=0x7f020018;
+        public static final int ic_lockscreen_unlock_normal=0x7f020019;
+        public static final int ic_tab_theme_normal=0x7f02001a;
+        public static final int ic_tab_theme_selected=0x7f02001b;
+        public static final int icon=0x7f02001c;
+        public static final int indicator_arrow=0x7f02001d;
+        public static final int indicator_bg_bottom=0x7f02001e;
+        public static final int indicator_bg_top=0x7f02001f;
         /**  画面背景色 
          */
-        public static final int layout_backgroud=0x7f020022;
+        public static final int layout_backgroud=0x7f02002e;
         /**  分割线背景色 
          */
-        public static final int line_background=0x7f020023;
-        public static final int list_bg_color=0x7f020014;
-        public static final int lockscre_pressed=0x7f020015;
-        public static final int lockscreen_normal=0x7f020016;
-        public static final int main_setting_btn_np=0x7f020017;
-        public static final int name_left=0x7f020018;
-        public static final int name_right=0x7f020019;
-        public static final int ok=0x7f02001a;
-        public static final int ok_button=0x7f02001b;
-        public static final int ok_d=0x7f02001c;
-        public static final int ok_p=0x7f02001d;
-        public static final int setting=0x7f02001e;
-        public static final int setting_p=0x7f02001f;
-        public static final int superman=0x7f020020;
-        public static final int template_checkbox_normal=0x7f020021;
+        public static final int line_background=0x7f02002f;
+        public static final int list_bg_color=0x7f020020;
+        public static final int lockscre_pressed=0x7f020021;
+        public static final int lockscreen_normal=0x7f020022;
+        public static final int main_setting_btn_np=0x7f020023;
+        public static final int name_left=0x7f020024;
+        public static final int name_right=0x7f020025;
+        public static final int ok=0x7f020026;
+        public static final int ok_button=0x7f020027;
+        public static final int ok_d=0x7f020028;
+        public static final int ok_p=0x7f020029;
+        public static final int setting=0x7f02002a;
+        public static final int setting_p=0x7f02002b;
+        public static final int superman=0x7f02002c;
+        public static final int template_checkbox_normal=0x7f02002d;
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f060033;
