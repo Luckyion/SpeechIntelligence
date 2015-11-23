@@ -3,12 +3,21 @@ package me.videa.application;
 import me.videa.uncaughtexceptionhandler.UncaughtException;
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 public class MyApplication extends Application implements GlobalMethod{
 	
 	public static MyApplication application;
+	protected static SharedPreferences sp;
 	
-	Context mContext;
+	private final static String mConfigName = "config";
+	
+	static Context mContext;
+	
+	public MyApplication() {
+		// TODO Auto-generated constructor stub
+	}
+	
     @Override
     public void onCreate() {
         // TODO Auto-generated method stub
@@ -34,6 +43,11 @@ public class MyApplication extends Application implements GlobalMethod{
 	@Override
 	public void initConfig() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	protected static SharedPreferences getSharedPreferences() {
+		return mContext.getSharedPreferences(mConfigName, 0);
 		
 	}
 }

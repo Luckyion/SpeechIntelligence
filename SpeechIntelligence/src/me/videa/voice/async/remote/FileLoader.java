@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import me.videa.application.DebugConfig;
 import me.videa.show.HistoryDataCache;
 
 import org.apache.http.HttpEntity;
@@ -32,8 +33,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Debug;
+import android.util.Log;
+
 public class FileLoader {
 	
+	
+	private final static String TAG = "FileLoader";
 	private String mUrl;
 	private String mLocalpath;
 	private String mCurrentPath;
@@ -75,7 +81,7 @@ public class FileLoader {
 			httpResponse = client.execute(hp);
 			// statusCode == 200 正常
 			statusCode = httpResponse.getStatusLine().getStatusCode();
-			System.out.println("statusCode=" + statusCode);
+			Log.d(TAG, "statusCode=" + statusCode);
 			InputStream inputStream = null;
 			if(statusCode == 200){
 				HttpEntity entity = httpResponse.getEntity();
@@ -88,7 +94,8 @@ public class FileLoader {
 						result += temp;
 						System.out.println(temp);
 					}
-					System.out.println(result);
+					if(DebugConfig.DEBUG)
+						Log.d(TAG, "result: " + result);
 				}
 			}			
 			if(inputStream != null){

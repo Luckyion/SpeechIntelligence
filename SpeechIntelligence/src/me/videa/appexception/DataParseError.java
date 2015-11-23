@@ -2,8 +2,7 @@ package me.videa.appexception;
 
 
 /**
- * {@code DataParseError} 类为数据解析异常类。
- * 包括网络数据处理，文件数据解析如XML数据解析等。
+ * {@code DataParseError} 
  * @author Vickie Tang
  *
  */

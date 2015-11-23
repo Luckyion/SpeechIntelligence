@@ -2,8 +2,7 @@ package me.videa.appexception;
 
 
 /**
- * {@code NetworkError} 为网络访问异常类。
- * 包括访问超时、服务器错误等
+ * {@code NetworkError} 
  * @author pactera
  *
  */

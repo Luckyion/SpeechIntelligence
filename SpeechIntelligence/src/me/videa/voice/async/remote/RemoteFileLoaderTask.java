@@ -1,14 +1,9 @@
 package me.videa.voice.async.remote;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import me.videa.utils.BasicConfig;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -36,7 +31,6 @@ public class RemoteFileLoaderTask extends AsyncTask<String, String, List<Map<Str
 	@Override
 	protected List<Map<String, String>> doInBackground(String... params) {
 		// TODO Auto-generated method stub	
-		BasicConfig.setContext(mContext);
 		String url = BasicConfig.FILE_URL;
 		List<Map<String, String>> result = new FileLoader(url, mCurrentPath).queryRemoteFileMessage();
 		return result;

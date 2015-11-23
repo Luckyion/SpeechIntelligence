@@ -2,7 +2,7 @@ package me.videa.appexception;
 
 
 /**
- * {@code ViewOperatorError} 应用表达层异常捕获
+ * {@code ViewOperatorError} 
  * @author Vickie Tang
  *
  */

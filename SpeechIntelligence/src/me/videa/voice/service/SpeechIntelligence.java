@@ -1,6 +1,5 @@
 package me.videa.voice.service;
 
-import me.videa.base.functions.Contacts;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
@@ -34,7 +33,6 @@ public class SpeechIntelligence extends Service{
 		// TODO Auto-generated method stub
 		Log.i(TAG, "onCreate");
 		super.onCreate();	
-		Log.d(TAG, "你怎么就这么麻烦呢？？？？？");
 //		new Contacts(this).getContacts();
 	}
 
