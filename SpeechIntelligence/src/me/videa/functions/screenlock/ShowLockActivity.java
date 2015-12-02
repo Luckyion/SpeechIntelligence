@@ -1,6 +1,6 @@
 package me.videa.functions.screenlock;
 
-import me.videa.base.functions.StartSpecificApplication;
+import me.videa.voice.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-
-import com.iflytek.voicedemo.R;
 
 public class ShowLockActivity extends Activity implements VioceLockCallback{
 

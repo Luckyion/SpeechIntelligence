@@ -3,8 +3,7 @@ package me.videa.show;
 import java.util.List;
 import java.util.Map;
 
-import com.iflytek.voicedemo.R;
-
+import me.videa.voice.R;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

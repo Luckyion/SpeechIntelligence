@@ -11,8 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.iflytek.voicedemo.R;
-
 public class ProxyNotification {
 	
 	private Context mContext;

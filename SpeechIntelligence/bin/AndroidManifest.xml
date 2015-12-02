@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.iflytek.voicedemo"
+    package="me.videa.voice"
     android:versionCode="1"
-    android:versionName="2.0.1018.1013" >
+    android:versionName="0.0.0001" >
     
      <uses-sdk android:minSdkVersion="11" 
         android:targetSdkVersion="19"/>

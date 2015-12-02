@@ -3,11 +3,9 @@ package me.videa.show;
 import java.util.List;
 import java.util.Map;
 
+import me.videa.voice.R;
 import me.videa.voice.async.remote.RemoteFileLoaderCallback;
 import me.videa.voice.async.remote.RemoteFileLoaderTask;
-
-import com.iflytek.voicedemo.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
