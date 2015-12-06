@@ -1,4 +1,4 @@
-package me.videa.voice.async.remote;
+package me.videa.functions.remote;
 
 /**
  * 进度回调接口

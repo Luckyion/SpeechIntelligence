@@ -29,24 +29,13 @@
         android:name="me.videa.application.MyApplication"
         android:icon="@drawable/icon"
         android:allowBackup="true"
+        android:theme="@android:style/Theme.Black.NoTitleBar"
         android:label="SpeechIntelligence" >
         <activity
-            android:name="com.iflytek.voicedemo.MainActivity"
+            android:name="me.videa.voice.show.VoiceMainActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
             android:icon="@drawable/icon"
-            android:label="SpeechIntelligence"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="me.videa.voice.VoiceMainActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:icon="@drawable/icon"
-            android:label="SpeechIntelligence"
+            android:label="SpeechIntelligence"           
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -74,43 +63,6 @@
                 <category android:name="android.intent.category.default"/>
             </intent-filter>
         </service>
-
-        <activity android:name="com.iflytek.speech.setting.TtsSettings" >
-        </activity>
-        <activity android:name="com.iflytek.speech.setting.IatSettings" >
-        </activity>
-        <activity android:name="com.iflytek.speech.setting.UnderstanderSettings" >
-        </activity>
-        <activity
-            android:name="com.iflytek.voicedemo.IatDemo"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.iflytek.voicedemo.AsrDemo"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.iflytek.voicedemo.UnderstanderDemo"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.iflytek.voicedemo.TtsDemo"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.iflytek.voicedemo.IseDemo"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.iflytek.speech.setting.IseSettings"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:screenOrientation="portrait" >
-        </activity>
         <!-- 移动统计分析 -->
         <meta-data
             android:name="IFLYTEK_APPKEY"
@@ -118,6 +70,6 @@
         <meta-data
             android:name="IFLYTEK_CHANNEL"
             android:value="Android_Demo" />
-    </application>    "
+    </application> 
 
 </manifest>

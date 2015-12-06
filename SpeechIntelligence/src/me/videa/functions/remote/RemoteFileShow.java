@@ -1,11 +1,9 @@
-package me.videa.show;
+package me.videa.functions.remote;
 
 import java.util.List;
 import java.util.Map;
 
 import me.videa.voice.R;
-import me.videa.voice.async.remote.RemoteFileLoaderCallback;
-import me.videa.voice.async.remote.RemoteFileLoaderTask;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;

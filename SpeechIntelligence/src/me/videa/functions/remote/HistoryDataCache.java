@@ -1,4 +1,4 @@
-package me.videa.show;
+package me.videa.functions.remote;
 
 import java.util.HashMap;
 import java.util.LinkedList;

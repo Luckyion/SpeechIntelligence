@@ -158,13 +158,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ptrSubHeaderTextAppearance=0x7f01000b;
     }
     public static final class color {
+        public static final int background=0x7f080001;
         public static final int black=0x7f080000;
-        public static final int content_color=0x7f080004;
+        public static final int content_color=0x7f080006;
         /**  控件按下时显示的颜色 
          */
-        public static final int list_backgroud_color=0x7f080002;
-        public static final int title_color=0x7f080003;
-        public static final int white=0x7f080001;
+        public static final int list_backgroud_color=0x7f080004;
+        public static final int title_color=0x7f080005;
+        public static final int txtColor=0x7f080002;
+        public static final int white=0x7f080003;
     }
     public static final class dimen {
         public static final int btn_size=0x7f060007;
@@ -181,78 +183,63 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int txt_size=0x7f060008;
     }
     public static final class drawable {
-        public static final int bg1=0x7f020000;
-        public static final int cancel=0x7f020001;
-        public static final int cancel_button=0x7f020002;
-        public static final int cancel_p=0x7f020003;
-        public static final int common_loading3_0=0x7f020004;
-        public static final int common_loading3_1=0x7f020005;
-        public static final int common_loading3_10=0x7f020006;
-        public static final int common_loading3_11=0x7f020007;
-        public static final int common_loading3_2=0x7f020008;
-        public static final int common_loading3_3=0x7f020009;
-        public static final int common_loading3_4=0x7f02000a;
-        public static final int common_loading3_5=0x7f02000b;
-        public static final int common_loading3_6=0x7f02000c;
-        public static final int common_loading3_7=0x7f02000d;
-        public static final int common_loading3_8=0x7f02000e;
-        public static final int common_loading3_9=0x7f02000f;
-        public static final int default_deliver=0x7f020010;
-        public static final int default_ptr_flip=0x7f020011;
-        public static final int default_ptr_rotate=0x7f020012;
-        public static final int ic_code_scan_shortcut=0x7f020013;
-        public static final int ic_lockscreen_message_activated=0x7f020014;
-        public static final int ic_lockscreen_message_normal=0x7f020015;
-        public static final int ic_lockscreen_phone_activated=0x7f020016;
-        public static final int ic_lockscreen_phone_normal=0x7f020017;
-        public static final int ic_lockscreen_unlock_activated=0x7f020018;
-        public static final int ic_lockscreen_unlock_normal=0x7f020019;
-        public static final int ic_tab_theme_normal=0x7f02001a;
-        public static final int ic_tab_theme_selected=0x7f02001b;
-        public static final int icon=0x7f02001c;
-        public static final int indicator_arrow=0x7f02001d;
-        public static final int indicator_bg_bottom=0x7f02001e;
-        public static final int indicator_bg_top=0x7f02001f;
+        public static final int btn_background=0x7f020000;
+        public static final int common_loading3_0=0x7f020001;
+        public static final int common_loading3_1=0x7f020002;
+        public static final int common_loading3_10=0x7f020003;
+        public static final int common_loading3_11=0x7f020004;
+        public static final int common_loading3_2=0x7f020005;
+        public static final int common_loading3_3=0x7f020006;
+        public static final int common_loading3_4=0x7f020007;
+        public static final int common_loading3_5=0x7f020008;
+        public static final int common_loading3_6=0x7f020009;
+        public static final int common_loading3_7=0x7f02000a;
+        public static final int common_loading3_8=0x7f02000b;
+        public static final int common_loading3_9=0x7f02000c;
+        public static final int default_deliver=0x7f02000d;
+        public static final int default_ptr_flip=0x7f02000e;
+        public static final int default_ptr_rotate=0x7f02000f;
+        public static final int ic_code_scan_shortcut=0x7f020010;
+        public static final int ic_lockscreen_message_activated=0x7f020011;
+        public static final int ic_lockscreen_message_normal=0x7f020012;
+        public static final int ic_lockscreen_phone_activated=0x7f020013;
+        public static final int ic_lockscreen_phone_normal=0x7f020014;
+        public static final int ic_lockscreen_unlock_activated=0x7f020015;
+        public static final int ic_lockscreen_unlock_normal=0x7f020016;
+        public static final int ic_tab_theme_normal=0x7f020017;
+        public static final int ic_tab_theme_selected=0x7f020018;
+        public static final int icon=0x7f020019;
+        public static final int indicator_arrow=0x7f02001a;
+        public static final int indicator_bg_bottom=0x7f02001b;
+        public static final int indicator_bg_top=0x7f02001c;
+        public static final int jarvis_bg=0x7f02001d;
         /**  画面背景色 
          */
-        public static final int layout_backgroud=0x7f02002e;
+        public static final int layout_backgroud=0x7f020026;
         /**  分割线背景色 
          */
-        public static final int line_background=0x7f02002f;
-        public static final int list_bg_color=0x7f020020;
-        public static final int lockscre_pressed=0x7f020021;
-        public static final int lockscreen_normal=0x7f020022;
-        public static final int main_setting_btn_np=0x7f020023;
-        public static final int name_left=0x7f020024;
-        public static final int name_right=0x7f020025;
-        public static final int ok=0x7f020026;
-        public static final int ok_button=0x7f020027;
-        public static final int ok_d=0x7f020028;
-        public static final int ok_p=0x7f020029;
-        public static final int setting=0x7f02002a;
-        public static final int setting_p=0x7f02002b;
-        public static final int superman=0x7f02002c;
-        public static final int template_checkbox_normal=0x7f02002d;
+        public static final int line_background=0x7f020027;
+        public static final int list_bg_color=0x7f02001e;
+        public static final int lock_bg=0x7f02001f;
+        public static final int lockscre_pressed=0x7f020020;
+        public static final int lockscreen_normal=0x7f020021;
+        public static final int main_setting_btn_np=0x7f020022;
+        public static final int setting=0x7f020023;
+        public static final int setting_p=0x7f020024;
+        public static final int template_checkbox_normal=0x7f020025;
     }
     public static final class id {
         public static final int both=0x7f050003;
         public static final int current_content=0x7f05000e;
         public static final int current_path=0x7f05000c;
         public static final int current_path_name=0x7f05000d;
+        public static final int dateTip=0x7f050016;
         public static final int disabled=0x7f050000;
         public static final int file_name=0x7f05000f;
         public static final int file_size=0x7f050010;
         public static final int fl_inner=0x7f050011;
         public static final int flip=0x7f050008;
         public static final int gridview=0x7f050009;
-        public static final int iatRadioCloud=0x7f050019;
-        public static final int iatRadioLocal=0x7f05001a;
-        public static final int iatRadioMix=0x7f05001b;
-        public static final int iat_recognize=0x7f05001c;
-        public static final int iat_service=0x7f05001e;
-        public static final int iat_stop=0x7f05001d;
-        public static final int iat_text=0x7f050017;
-        public static final int main_title=0x7f050016;
         public static final int manualOnly=0x7f050004;
         public static final int pullDownFromTop=0x7f050005;
         public static final int pullFromEnd=0x7f050002;
@@ -262,7 +249,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_progress=0x7f050013;
         public static final int pull_to_refresh_sub_text=0x7f050015;
         public static final int pull_to_refresh_text=0x7f050014;
-        public static final int radioGroup=0x7f050018;
         public static final int rotate=0x7f050007;
         public static final int scrollview=0x7f05000b;
         public static final int webview=0x7f05000a;

@@ -2,10 +2,9 @@ package me.videa.uncaughtexceptionhandler;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 import android.app.AlertDialog;
+import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -13,13 +12,13 @@ import android.os.Looper;
 import android.util.Log;
 
 /**
- * ²¶»ñÈ«¾ÖÒì³££¬µ±Application³öÏÖÎ´ÄÜ²¶»ñµÄÒì³£</br>
- * »òÕßÆäËûÒì³£Ôì³É³ÌĞò³öÏÖ¡°Ó¦ÓÃ³ÌĞòÒÑÍ£Ö¹ÔËĞĞ¡±µÄ´íÎóÊ±</br>
- * ²ÉÓÃ×Ô¶¨Òå{@link Application}(ÈçMyApplication)¼Ì³ĞApplication</br>
- * ²¢ÔÚ{@link AndroidManifest.xml}ÖĞ½«<application></application>±êÇ©ĞŞ¸Ä</br>
- * ×Ô¶¨ÒåµÄApplication¡£Ó¦ÓÃ³ÌĞòÔÚ³öÏÖ²»¿É¿ØÒì³£Ê±½«µ÷ÓÃ×Ô¶¨ÒåApplication</br>
- * ÔÚÆäÖĞ×öÏàÓ¦µÄÒì³£²¶»ñ£¬²¢×öºóĞø´¦Àí£¬Èç»ñÈ¡Éè±¸ĞÅÏ¢£¬»ñÈ¡Òì³£ĞÅÏ¢</br>
- * ²¢ÓÑºÃµÄÌáÊ¾ÓÃ»§³öÏÖÁË²»¿É¿ØµÄÒì³££¬µ¼ÖÂÓ¦ÓÃ³ÌĞòÍË³ö¡£ </br>
+ * æ•è·å…¨å±€å¼‚å¸¸ï¼Œå½“Applicationå‡ºç°æœªèƒ½æ•è·çš„å¼‚å¸¸</br>
+ * æˆ–è€…å…¶ä»–å¼‚å¸¸é€ æˆç¨‹åºå‡ºç°â€œåº”ç”¨ç¨‹åºå·²åœæ­¢è¿è¡Œâ€çš„é”™è¯¯æ—¶</br>
+ * é‡‡ç”¨è‡ªå®šä¹‰{@link Application}(å¦‚MyApplication)ç»§æ‰¿Application</br>
+ * å¹¶åœ¨{@link AndroidManifest.xml}ä¸­å°†<application></application>æ ‡ç­¾ä¿®æ”¹</br>
+ * è‡ªå®šä¹‰çš„Applicationã€‚åº”ç”¨ç¨‹åºåœ¨å‡ºç°ä¸å¯æ§å¼‚å¸¸æ—¶å°†è°ƒç”¨è‡ªå®šä¹‰Application</br>
+ * åœ¨å…¶ä¸­åšç›¸åº”çš„å¼‚å¸¸æ•è·ï¼Œå¹¶åšåç»­å¤„ç†ï¼Œå¦‚è·å–è®¾å¤‡ä¿¡æ¯ï¼Œè·å–å¼‚å¸¸ä¿¡æ¯</br>
+ * å¹¶å‹å¥½çš„æç¤ºç”¨æˆ·å‡ºç°äº†ä¸å¯æ§çš„å¼‚å¸¸ï¼Œå¯¼è‡´åº”ç”¨ç¨‹åºé€€å‡ºã€‚ </br>
  * @author Vickie Tang
  * @since version 1.0
  * 
@@ -42,7 +41,7 @@ public class UncaughtException implements UncaughtExceptionHandler {
     }
 
     /**
-     * ÓëApplication±£³ÖÍ¬Ò»µ¥ÀıÄ£Ê½£¬±ÜÃâ¶àÏß³Ì´¦ÀíÊ±·¢ÉúÒì³£</br>
+     * ä¸Applicationä¿æŒåŒä¸€å•ä¾‹æ¨¡å¼ï¼Œé¿å…å¤šçº¿ç¨‹å¤„ç†æ—¶å‘ç”Ÿå¼‚å¸¸</br>
      * @return {@link UncaughtException} mUncaughtException
      */
     public synchronized static UncaughtException getInstance() {
@@ -53,7 +52,7 @@ public class UncaughtException implements UncaughtExceptionHandler {
     }
 
     /**
-     * ³õÊ¼»¯ÉèÖÃÄ¬ÈÏµÄÎ´²¶»ñÒì³£µÄ´¦ÀíÆ÷, ÈÎÒâÏß³Ì·¢ÉúÎ´²¶»ñÒì³£Ê±µ÷ÓÃ
+     * åˆå§‹åŒ–è®¾ç½®é»˜è®¤çš„æœªæ•è·å¼‚å¸¸çš„å¤„ç†å™¨, ä»»æ„çº¿ç¨‹å‘ç”Ÿæœªæ•è·å¼‚å¸¸æ—¶è°ƒç”¨
      */
     public void init() {
         Thread.setDefaultUncaughtExceptionHandler(mUncaughtException);
@@ -63,13 +62,15 @@ public class UncaughtException implements UncaughtExceptionHandler {
     public void uncaughtException(Thread thread, Throwable ex) {
         // TODO Auto-generated method stub
         Log.e(TAG, "uncaughtException thread : " + thread + "||name=" + thread.getName() + "||id=" + thread.getId() + "||exception=" + ex);
-        showDialog() ;
+        ex.printStackTrace();
+        System.exit(0);
+//        showDialog() ;
     }
     
     
     /**
-     * »ñÈ¡Éè±¸»ù±¾ĞÅÏ¢
-     * @return Éè±¸ĞÅÏ¢£¬ÈçÉè±¸°æ±¾ºÅ¡¢Ê¶±ğÂëµÈ
+     * è·å–è®¾å¤‡åŸºæœ¬ä¿¡æ¯
+     * @return è®¾å¤‡ä¿¡æ¯ï¼Œå¦‚è®¾å¤‡ç‰ˆæœ¬å·ã€è¯†åˆ«ç ç­‰
      */
     private HashMap<String, String> getDeviceMessages(){
     	return new DeviceMessages(context).getDevicesMessages();
@@ -80,8 +81,8 @@ public class UncaughtException implements UncaughtExceptionHandler {
             @Override
             public void run() {
                 Looper.prepare();
-                new AlertDialog.Builder(context).setTitle("ÌáÊ¾").setCancelable(false).setMessage("´óÒ¯ÎÒ±ÀÀ£ÁË...")
-                        .setNeutralButton("ÎÒÖªµÀÁË", new OnClickListener() {
+                new AlertDialog.Builder(context).setTitle("æç¤º").setCancelable(false).setMessage("å¤§çˆ·æˆ‘å´©æºƒäº†...")
+                        .setNeutralButton("æˆ‘çŸ¥é“äº†", new OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 System.exit(0);

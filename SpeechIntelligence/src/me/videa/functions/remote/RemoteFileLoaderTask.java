@@ -1,4 +1,4 @@
-package me.videa.voice.async.remote;
+package me.videa.functions.remote;
 
 import java.util.List;
 import java.util.Map;

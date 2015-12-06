@@ -2,8 +2,10 @@
 
 <resources>
     <color name="black">#000000</color>
+    <color name="background">#050d10</color>
+    <color name="txtColor">#00b7b5</color>
     <!-- 画面背景色 -->
-    <drawable name="layout_backgroud">#000000</drawable>
+    <drawable name="layout_backgroud">#050d10</drawable>
     
     <!-- 分割线背景色 -->
     <drawable name="line_background">#161823</drawable>
