@@ -85,13 +85,14 @@ int id both 0x7f050003
 int id current_content 0x7f05000e
 int id current_path 0x7f05000c
 int id current_path_name 0x7f05000d
-int id dateTip 0x7f050016
 int id disabled 0x7f050000
 int id file_name 0x7f05000f
 int id file_size 0x7f050010
 int id fl_inner 0x7f050011
 int id flip 0x7f050008
 int id gridview 0x7f050009
+int id mainView 0x7f050017
+int id main_layout 0x7f050016
 int id manualOnly 0x7f050004
 int id pullDownFromTop 0x7f050005
 int id pullFromEnd 0x7f050002

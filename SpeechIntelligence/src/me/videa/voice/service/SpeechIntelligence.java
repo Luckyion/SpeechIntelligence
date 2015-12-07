@@ -27,6 +27,7 @@ public class SpeechIntelligence extends Service{
 	private static boolean ISRECOGNISING = true;
 	private static SpeechRecognizer mRecognizer;
 	private static RecycleHandler mHandler;
+	public static Handler mViewHandler;
 	
 	
 	public class LocalBinder extends Binder{
@@ -137,7 +138,6 @@ public class SpeechIntelligence extends Service{
 		mRecognizer.setParameter(SpeechConstant.ACCENT, "mandarin "); 		
 		mRecognizer.startListening(mRecognitionListener);		
 	}
-	
 	
 	static class RecycleHandler extends Handler{
 
