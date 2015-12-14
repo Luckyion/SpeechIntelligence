@@ -2,7 +2,7 @@ package me.videa.appexception;
 
 
 /**
- * {@code FileOperatorError} 
+ * {@code FileOperatorError} 类为文件处理异常捕获类。
  * @author Vickie Tang
  *
  */

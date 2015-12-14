@@ -8,3 +8,4 @@ public interface RemoteFileLoaderCallback {
 	public void setResult(List<Map<String, String>> result, String path);
 
 }
+

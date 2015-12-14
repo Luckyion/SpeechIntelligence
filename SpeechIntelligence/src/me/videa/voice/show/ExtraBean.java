@@ -1,4 +1,4 @@
-package me.videa.voice.show;
+﻿package me.videa.voice.show;
 
 public class ExtraBean {
 	
@@ -25,3 +25,4 @@ public class ExtraBean {
 	
 
 }
+

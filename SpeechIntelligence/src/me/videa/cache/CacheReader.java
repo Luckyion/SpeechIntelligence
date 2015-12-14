@@ -6,11 +6,13 @@ import java.io.File;
  * Cache文件读取类</br>
  * 读取过程是异步的，需要实现{@link Cache}接口获取Cache文件内容。</br>
  * 调用方法：</br>
+ * {@code
  * 		new CacheReader(new Cache(){</br>
  * 	&nbsp;&nbsp;&nbsp;&nbsp;public void setCache(String cache){</br>
  * 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			//...</br>
  * 		&nbsp;&nbsp;&nbsp;	}</br>
  * 	&nbsp;&nbsp;&nbsp;	}).readCache("xx");</br>
+ * }
  * @author Vickie Tang
  *
  */

@@ -88,7 +88,7 @@ public class RoundSpinView extends View {
 			select_img_bitmap[index] = BitmapFactory.decodeResource(getResources(), select_img[index]);
 		}
 		
-		setBackgroundResource(R.drawable.lock_bg);
+		setBackgroundResource(R.drawable.bg1);
 
 		mPointX = px / 2;
 		mPointY = py / 3 * 2;

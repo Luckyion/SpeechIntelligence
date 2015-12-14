@@ -6,8 +6,8 @@ import android.content.Context;
 import android.telephony.TelephonyManager;
 
 /**
- * è·å–è®¾å¤‡ä¿¡æ¯</br>
- * è°ƒç”¨æ—¶éœ€è¦åœ¨{@link AndroidManifest.xml}ä¸­é…ç½®æƒé™</br>
+ * »ñÈ¡Éè±¸ĞÅÏ¢</br>
+ * µ÷ÓÃÊ±ĞèÒªÔÚ{@link AndroidManifest.xml}ÖĞÅäÖÃÈ¨ÏŞ</br>
  * <uses-permission android:name="android.permission.READ_PHONE_STATE" </br>
  * @author Vickie Tang
  * @version 1.0
@@ -26,8 +26,8 @@ public class DeviceMessages {
 	}
 	
 	/**
-	 * è·å–è®¾å¤‡ä¿¡æ¯
-	 * å¦‚æ‰‹æœºå·ç ã€IMEIã€è¿è¥å•†ã€SIMå¡åºåˆ—å·ç­‰
+	 * »ñÈ¡Éè±¸ĞÅÏ¢
+	 * ÈçÊÖ»úºÅÂë¡¢IMEI¡¢ÔËÓªÉÌ¡¢SIM¿¨ĞòÁĞºÅµÈ
 	 * @return List<String> deviceMessages
 	 */
 	public HashMap<String, String> getDevicesMessages(){
@@ -42,7 +42,7 @@ public class DeviceMessages {
 	}
 	
 	/**
-	 * è·å–è®¾å¤‡ç¼–å·IMEI
+	 * »ñÈ¡Éè±¸±àºÅIMEI
 	 * @return String IMEI
 	 */
 	private String getDevID(){
@@ -50,7 +50,7 @@ public class DeviceMessages {
 	}
 	
 	/**
-	 * è·å–ç”µè¯å·ç 
+	 * »ñÈ¡µç»°ºÅÂë
 	 * @param telephonyManager
 	 * @return String phone number
 	 */

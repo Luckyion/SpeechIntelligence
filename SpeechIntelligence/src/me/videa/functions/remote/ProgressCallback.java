@@ -1,7 +1,7 @@
 package me.videa.functions.remote;
 
 /**
- * 进度回调接口
+ * 杩涘害鍥炶皟鎺ュ彛
  * @author pactera
  *
  */
@@ -10,3 +10,4 @@ public interface ProgressCallback {
 	public  void setProgress(String progress);
 
 }
+

@@ -6,3 +6,4 @@ public interface Encrypt {
 	public String getDefaultKey();
 
 }
+

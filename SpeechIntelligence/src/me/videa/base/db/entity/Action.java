@@ -11,21 +11,21 @@ public class Action extends EntityBase{
 	@Column(column = "ACTION")
 	private String action;
 	@Column(column = "SWMANTIC")
-	private String semantic;//加密语义
+	private String semantic;//鍔犲瘑璇­涔
 	@Column(column = "ENCRYPT_ROLE")
-	private String encrypt_role;//加密规则
+	private String encrypt_role;//鍔犲瘑瑙勫垯
 	@Column(column = "PASSWORD")
-	private String password;//数据获取密钥
+	private String password;//鏁版嵁鑾峰彇瀵嗛挜
 	@Column(column = "NOTE")
-	private String note;//记录
+	private String note;//璁板綍
 	@Column(column = "MARK")
-	private String mark;//备注
+	private String mark;//澶囨敞
 	@Column(column = "CREATE_TIME")
-	private String create_time;//创建时间
+	private String create_time;//鍒涘缓鏃堕棿
 	@Column(column = "MODIFY_TIME")
 	private String modify_time;
 	@Column(column = "LOCK_STATUS")
-	private String lock_status;//锁定状态
+	private String lock_status;//閿佸畾鐘舵€
 
 
 
@@ -171,3 +171,4 @@ public class Action extends EntityBase{
     }
 
 }
+

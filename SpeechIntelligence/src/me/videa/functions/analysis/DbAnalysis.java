@@ -7,23 +7,24 @@ import me.videa.base.db.entity.Action;
 
 public interface DbAnalysis {
 	/**
-	 * 查询指定语义所对应的动作
-	 * @param compSentence1 语义解析的语句
-	 * @param isFuzzy 是否模糊查询
+	 * 鏌ヨ¯㈡寚瀹氳¯­涔夋墍瀵瑰簲鐨勫姩浣
+	 * @param compSentence1 璇­涔夎В鏋愮殑璇­鍙¥
+	 * @param isFuzzy 鏄¯鍚︽ā绯婃煡璇¢
 	 * @return
 	 */
 	public List<Action> query(String compSentence1, String password, boolean isFuzzy);
 	
 	/**
-	 * 按照相似度排序后的动作
-	 * @return 排序后的动作
+	 * 鎸夌収鐩镐技搴︽帓搴忓悗鐨勫姩浣
+	 * @return 鎺掑簭鍚庣殑鍔ㄤ綔
 	 */
 	public LinkedList<Action> soft();
 	/**
-	 * 保存语义动作
+	 * 淇濆瓨璇­涔夊姩浣
 	 * @param action
-	 * @return 是否成功
+	 * @return 鏄¯鍚︽垚鍔
 	 */
 	public boolean save(Action action);
 
 }
+

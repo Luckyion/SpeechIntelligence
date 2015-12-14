@@ -1,4 +1,4 @@
-package me.videa.utils;
+﻿package me.videa.utils;
 
 import java.util.LinkedList;
 
@@ -38,7 +38,7 @@ public class WebServiceHelper {
 
 
 	/**
-	 * 获取WebService数据
+	 * 鑾峰彇WebService鏁版嵁
 	 * @param method
 	 * @param ipAddress
 	 * @param webserviceNameSpace
@@ -58,3 +58,4 @@ public class WebServiceHelper {
 	}
 
 }
+

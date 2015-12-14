@@ -1,5 +1,6 @@
 package me.videa.functions.screenlock;
 
+import me.videa.base.functions.StartSpecificApplication;
 import me.videa.voice.R;
 import android.app.Activity;
 import android.content.Intent;
