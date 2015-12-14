@@ -9,48 +9,48 @@ package me.videa.voice;
 
 public final class R {
     public static final class array {
-        public static final int category_entries=0x7f08000a;
-        public static final int category_values=0x7f08000b;
-        public static final int dwa_entries=0x7f08000f;
+        public static final int category_entries=0x7f09000a;
+        public static final int category_values=0x7f09000b;
+        public static final int dwa_entries=0x7f09000f;
         /**  合成 
          */
-        public static final int engine_entries=0x7f080000;
-        public static final int engine_values=0x7f080001;
-        public static final int ise_language_entries=0x7f080008;
-        public static final int ise_language_values=0x7f080009;
+        public static final int engine_entries=0x7f090000;
+        public static final int engine_values=0x7f090001;
+        public static final int ise_language_entries=0x7f090008;
+        public static final int ise_language_values=0x7f090009;
         /**  语言 
          */
-        public static final int language_entries=0x7f080006;
-        public static final int language_values=0x7f080007;
+        public static final int language_entries=0x7f090006;
+        public static final int language_values=0x7f090007;
         /**  标点符号 
          */
-        public static final int punc_entries=0x7f08000d;
-        public static final int punc_values=0x7f08000e;
-        public static final int result_level_entries=0x7f08000c;
-        public static final int stream_entries=0x7f080004;
-        public static final int stream_values=0x7f080005;
-        public static final int voicer_cloud_entries=0x7f080002;
-        public static final int voicer_cloud_values=0x7f080003;
+        public static final int punc_entries=0x7f09000d;
+        public static final int punc_values=0x7f09000e;
+        public static final int result_level_entries=0x7f09000c;
+        public static final int stream_entries=0x7f090004;
+        public static final int stream_values=0x7f090005;
+        public static final int voicer_cloud_entries=0x7f090002;
+        public static final int voicer_cloud_values=0x7f090003;
     }
     public static final class attr {
     }
     public static final class color {
-        public static final int black=0x7f050000;
-        public static final int content_color=0x7f050004;
+        public static final int black=0x7f060000;
+        public static final int content_color=0x7f060004;
         /**  控件按下时显示的颜色 
          */
-        public static final int list_backgroud_color=0x7f050002;
-        public static final int title_color=0x7f050003;
-        public static final int white=0x7f050001;
+        public static final int list_backgroud_color=0x7f060002;
+        public static final int title_color=0x7f060003;
+        public static final int white=0x7f060001;
     }
     public static final class dimen {
-        public static final int btn_size=0x7f060002;
+        public static final int btn_size=0x7f070002;
         /**  分割线高度 
          */
-        public static final int line_height=0x7f060004;
-        public static final int margin_=0x7f060000;
-        public static final int pading_=0x7f060001;
-        public static final int txt_size=0x7f060003;
+        public static final int line_height=0x7f070004;
+        public static final int margin_=0x7f070000;
+        public static final int pading_=0x7f070001;
+        public static final int txt_size=0x7f070003;
     }
     public static final class drawable {
         public static final int bg1=0x7f020000;
@@ -90,101 +90,93 @@ public final class R {
         public static final int template_checkbox_normal=0x7f02001c;
     }
     public static final class id {
-        public static final int RelativeLayout1=0x7f0a0006;
-        public static final int cancel=0x7f0a0009;
-        public static final int content=0x7f0a0008;
-        public static final int current_content=0x7f0a0002;
-        public static final int current_path=0x7f0a0000;
-        public static final int current_path_name=0x7f0a0001;
-        public static final int file_name=0x7f0a0003;
-        public static final int file_size=0x7f0a0004;
-        public static final int iatRadioCloud=0x7f0a0018;
-        public static final int iatRadioLocal=0x7f0a0019;
-        public static final int iatRadioMix=0x7f0a001a;
-        public static final int iat_recognize=0x7f0a001b;
-        public static final int iat_service=0x7f0a001d;
-        public static final int iat_stop=0x7f0a001c;
-        public static final int iat_text=0x7f0a0016;
-        public static final int image_tts_set=0x7f0a000b;
-        public static final int mainView=0x7f0a0005;
-        public static final int main_title=0x7f0a0015;
-        public static final int ok=0x7f0a000a;
-        public static final int radioGroup=0x7f0a0017;
-        public static final int title=0x7f0a0007;
-        public static final int tts_btn_person_select=0x7f0a0010;
-        public static final int tts_cancel=0x7f0a0012;
-        public static final int tts_pause=0x7f0a0013;
-        public static final int tts_play=0x7f0a0011;
-        public static final int tts_radioCloud=0x7f0a000e;
-        public static final int tts_radioLocal=0x7f0a000f;
-        public static final int tts_rediogroup=0x7f0a000d;
-        public static final int tts_resume=0x7f0a0014;
-        public static final int tts_text=0x7f0a000c;
+        public static final int RelativeLayout1=0x7f0b0006;
+        public static final int cancel=0x7f0b0009;
+        public static final int content=0x7f0b0008;
+        public static final int current_content=0x7f0b0002;
+        public static final int current_path=0x7f0b0000;
+        public static final int current_path_name=0x7f0b0001;
+        public static final int file_name=0x7f0b0003;
+        public static final int file_size=0x7f0b0004;
+        public static final int iatRadioCloud=0x7f0b000e;
+        public static final int iatRadioLocal=0x7f0b000f;
+        public static final int iatRadioMix=0x7f0b0010;
+        public static final int iat_recognize=0x7f0b0011;
+        public static final int iat_service=0x7f0b0013;
+        public static final int iat_stop=0x7f0b0012;
+        public static final int iat_text=0x7f0b000c;
+        public static final int mainView=0x7f0b0005;
+        public static final int main_title=0x7f0b000b;
+        public static final int ok=0x7f0b000a;
+        public static final int radioGroup=0x7f0b000d;
+        public static final int title=0x7f0b0007;
     }
     public static final class layout {
         public static final int activity_remote_file_show=0x7f030000;
         public static final int activity_remote_file_show_content=0x7f030001;
         public static final int activity_screen_lock=0x7f030002;
-        public static final int main=0x7f030003;
+        public static final int activity_voice_main=0x7f030003;
         public static final int superman_alertdialog=0x7f030004;
-        public static final int ttsdemo=0x7f030005;
-        public static final int voice_main_activity=0x7f030006;
+        public static final int voice_main_activity=0x7f030005;
+    }
+    public static final class raw {
+        public static final int androidpn=0x7f050000;
     }
     public static final class string {
         /**  请替换成在语音云官网申请的appid 
          */
-        public static final int app_id=0x7f07000a;
-        public static final int app_name=0x7f070009;
-        public static final int cancel=0x7f070007;
-        public static final int cloud_lib=0x7f070001;
-        public static final int current_content=0x7f070025;
+        public static final int app_id=0x7f08000a;
+        public static final int app_name=0x7f080009;
+        public static final int cancel=0x7f080007;
+        public static final int cloud_lib=0x7f080001;
+        public static final int current_content=0x7f080025;
         /**  ********************************************** 
          */
-        public static final int current_path=0x7f070023;
-        public static final int current_path_name=0x7f070024;
-        public static final int example_explain=0x7f07000b;
-        public static final int file_size=0x7f070026;
-        public static final int img_content=0x7f070027;
-        public static final int listen_type=0x7f070004;
-        public static final int load_err=0x7f070028;
-        public static final int local_lib=0x7f070002;
-        public static final int main_title=0x7f070000;
-        public static final int mix=0x7f070003;
-        public static final int pref_key_iat_show=0x7f070016;
-        public static final int pref_title_iat_dwa=0x7f070018;
-        public static final int pref_title_iat_show=0x7f070017;
-        public static final int start=0x7f070005;
-        public static final int start_service=0x7f070008;
-        public static final int stop=0x7f070006;
-        public static final int superman_cancel=0x7f070020;
-        public static final int superman_content=0x7f070022;
+        public static final int current_path=0x7f080023;
+        public static final int current_path_name=0x7f080024;
+        public static final int example_explain=0x7f08000b;
+        public static final int file_size=0x7f080026;
+        public static final int img_content=0x7f080027;
+        public static final int listen_type=0x7f080004;
+        public static final int load_err=0x7f080028;
+        public static final int local_lib=0x7f080002;
+        public static final int main_title=0x7f080000;
+        public static final int mix=0x7f080003;
+        public static final int pref_key_iat_show=0x7f080016;
+        public static final int pref_title_iat_dwa=0x7f080018;
+        public static final int pref_title_iat_show=0x7f080017;
+        public static final int start=0x7f080005;
+        public static final int start_service=0x7f080008;
+        public static final int stop=0x7f080006;
+        public static final int superman_cancel=0x7f080020;
+        public static final int superman_content=0x7f080022;
         /**  提示安装语音+对话框 
          */
-        public static final int superman_ok=0x7f07001f;
-        public static final int superman_title=0x7f070021;
+        public static final int superman_ok=0x7f08001f;
+        public static final int superman_title=0x7f080021;
         /**  听写 
          */
-        public static final int text_begin=0x7f070010;
-        public static final int text_cn_sentence=0x7f07001e;
-        public static final int text_cn_syllable=0x7f07001c;
-        public static final int text_cn_word=0x7f07001d;
-        public static final int text_download_success=0x7f070015;
-        public static final int text_en_sentence=0x7f07001b;
+        public static final int text_begin=0x7f080010;
+        public static final int text_cn_sentence=0x7f08001e;
+        public static final int text_cn_syllable=0x7f08001c;
+        public static final int text_cn_word=0x7f08001d;
+        public static final int text_download_success=0x7f080015;
+        public static final int text_en_sentence=0x7f08001b;
         /**  语音评测 
          */
-        public static final int text_en_word=0x7f07001a;
-        public static final int text_isr_abnf_hint=0x7f07000e;
-        public static final int text_tts_source=0x7f07000c;
-        public static final int text_tts_source_en=0x7f07000d;
-        public static final int text_understand_hint=0x7f07000f;
-        public static final int text_upload_contacts=0x7f070011;
-        public static final int text_upload_success=0x7f070013;
-        public static final int text_upload_userwords=0x7f070012;
-        public static final int text_userword_empty=0x7f070014;
-        public static final int tts_toast_format=0x7f070019;
+        public static final int text_en_word=0x7f08001a;
+        public static final int text_isr_abnf_hint=0x7f08000e;
+        public static final int text_tts_source=0x7f08000c;
+        public static final int text_tts_source_en=0x7f08000d;
+        public static final int text_understand_hint=0x7f08000f;
+        public static final int text_upload_contacts=0x7f080011;
+        public static final int text_upload_success=0x7f080013;
+        public static final int text_upload_userwords=0x7f080012;
+        public static final int text_userword_empty=0x7f080014;
+        public static final int tts_toast_format=0x7f080019;
     }
     public static final class style {
-        public static final int dialog=0x7f090000;
+        public static final int dialog=0x7f0a0000;
     }
     public static final class xml {
         public static final int iat_setting=0x7f040000;

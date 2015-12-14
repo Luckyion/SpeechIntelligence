@@ -10,17 +10,11 @@ public class AppView extends View{
 	
 	protected Paint mPaint;
 	
-	/**
-	 * 鏈€浜®鐨勫渾鍦堥¢滆壊
-	 */
+
 	public static String mColorBrighter = "#00b7b5";
-	/**
-	 * 绋嶆殫鐨勫渾鍦堥¢滆壊
-	 */
+
 	public static String mColor = "#01a7a5";
-	/**
-	 * 鏈€鏆楃殑鍦嗗湀棰滆壊
-	 */
+
 	public static String mColorDarker = "#003b39";
 
 	public AppView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -39,18 +33,18 @@ public class AppView extends View{
 	}
 	
 	/**
-	 * 缁樺埗鐩寸嚎
-	 * @param canvas   鐢诲竷
- 	 * @param pts      鐐规暟缁
+	 * 绘制直线
+	 * @param canvas   画布
+ 	 * @param pts      点
 	 */
 	protected void drawLine(Canvas canvas, float startX, float startY, float stopX, float stopY) {
 		canvas.drawLine(startX, startY, stopX, stopY, mPaint);
 	}
 	
 	/**
-	 * 缁樺埗鏂囧瓧 
-	 * @param canvas  鐢诲竷
-	 * @param text    鏂囧瓧
+	 * 绘制文本
+	 * @param canvas  画布
+	 * @param text    文字
 	 * @param x       x 
 	 * @param y       y
 	 */

@@ -33,11 +33,6 @@ public class AnalyseDbOp implements DbAnalysis{
 	}
 
 	
-	/**
-	 * 涓ユ牸鏂瑰紡鏌ヨ¯㈡暟鎹®
-	 * @param compSentence
-	 * @return 
-	 */
 	private List<Action> query(String compSentence, String password){
 		DbUtils dbUtils = DbUtils.create(mContext);
 		List<Action> actions = null;
@@ -51,11 +46,7 @@ public class AnalyseDbOp implements DbAnalysis{
 		}
 		return actions;
 	}
-	/**
-	 * 妯＄硦鏂瑰紡鏌ヨ¯㈡暟鎹®
-	 * @param compSentence
-	 * @return
-	 */
+
 	private List<Action> queryFuzzy(String compSentence, String password){
 		DbUtils dbUtils = DbUtils.create(mContext);
 		List<Action> actions = null;

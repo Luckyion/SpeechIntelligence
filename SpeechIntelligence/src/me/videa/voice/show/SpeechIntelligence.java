@@ -21,9 +21,7 @@ import com.iflytek.cloud.SpeechRecognizer;
 public class SpeechIntelligence extends Service{
 	
 	private final static String TAG = "SpeechIntelligence Service";	
-	/**
-	 * 鏄ˉ鍚︽ｅ湪璇闊冲悎鎴?
-	 */
+
 	private static boolean ISRECOGNISING = true;
 	private static SpeechRecognizer mRecognizer;
 	private static RecycleHandler mHandler;
@@ -70,9 +68,7 @@ public class SpeechIntelligence extends Service{
 	}
 	
 	
-	 /** 
-     * 鍒濆§嬪寲鐩戝惉鍣ㄣ€? 
-     */ 
+
     private InitListener mInitListener = new InitListener() { 
 
         @Override 
@@ -84,9 +80,7 @@ public class SpeechIntelligence extends Service{
         } 
     };
     
-    /**
-     * 璇闊宠瘑鍒?鐩戝惉鍣¨
-     */
+
     private static RecognizerListener mRecognitionListener = new RecognizerListener() {
 		
 		@Override
@@ -128,9 +122,7 @@ public class SpeechIntelligence extends Service{
 		}
 	};
 	
-	/**
-	 * 鐩戝惉璇闊冲苟杩涜?岃ˉ闊冲悎鎴?
-	 */
+
 	private void speechListener(){
 		mRecognizer = SpeechRecognizer.createRecognizer(this, mInitListener);
 		mRecognizer.setParameter(SpeechConstant.DOMAIN, "iat");    
@@ -157,10 +149,7 @@ public class SpeechIntelligence extends Service{
 		
 	}
 	
-	/**
-	 * 寰a鐜ˉ鐩戝惉璇闊虫帶鍒剁嚎绋?</br>
-	 * 
-	 */
+
 	class RecycleManager implements Runnable{
 		
 		public RecycleManager() {

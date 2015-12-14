@@ -1,4 +1,4 @@
-package me.videa.show;
+package me.videa.functions.remote.show;
 
 import java.util.List;
 import java.util.Map;

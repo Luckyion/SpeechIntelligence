@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import me.videa.application.DebugConfig;
-import me.videa.show.HistoryDataCache;
+import me.videa.functions.remote.show.HistoryDataCache;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -33,7 +33,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.Debug;
 import android.util.Log;
 
 public class FileLoader {

@@ -20,10 +20,39 @@ public class MainShowView extends CircleView {
 	private final float rectWidth = 400;
 	private final float rectHeight = 150;
 	private float rectTextWidth;
-	private float rectTextHeight;
+	private float rectTextHeight;	
+	
 	private final int mWidth = MyApplication.mScreenWidth;
 	private final int mHeight = MyApplication.mScreenHeight;	
-	private static int mNetCircleRadius = 225;
+	private final float mTextX = mHeight / 4;
+	private final float mTextY = mWidth / 2;
+	private static int mNetCircleRadius = 200;
+	
+	private final float mDateX = 300;
+	private final float mDateY = 300;
+	private final float mTemperX = mWidth - (3 * mCircleRadius / 2);
+	private final float mTemperY = mCircleRadius;
+	private final float mPowerX = 300;
+	private final float mPowerY = mHeight / 2;
+	private final float mNetworkX = 0;
+	private final float mNetworkY = mHeight - (mNetCircleRadius / 2);
+
+	private final float mMicX = mWidth - (3 * mCircleRadius / 2);
+	private final float mMicY = mHeight - (3 * mCircleRadius);	
+
+	
+	private String mTime = "00:00";
+	private String mWeek = "Monday";
+	private String mDay = "14";
+	private String mMonth = "Dec";
+	
+	private final String mTemperTip = "Temperature";
+	private final String mPowerTip = "Power";
+	private final String mNetStateTip = "Network State";
+	private final String mMicTip = "micro-phone";
+	
+	private final int mTextSize = 30;
+	
 	private String mNetSting = "";
 	private String mIp = "";
 
@@ -50,6 +79,7 @@ public class MainShowView extends CircleView {
 			mPaint = new Paint();
 			mPaint.setAntiAlias(true);
 		}
+		mPaint.reset();
 		drawDateView(canvas);
 		drawTemperView(canvas);
 		drawPowerView(canvas);
@@ -59,41 +89,39 @@ public class MainShowView extends CircleView {
 	}
 
 	/**
-	 * 缁樺埗鏄剧ず鏃ユ湡鐨勭粍浠¶
+	 * 绘制时间显示组件
 	 * 
 	 * @param canvas
 	 */
 	public void drawDateView(Canvas canvas) {
-		mX = 300;
-		mY = 300;
-		// 缁樺埗鐭╁舰鏃堕棿妗嗙嚎
+		// 绘制时间显示的矩形
 //		mPaint.setColor(Color.parseColor(mColorBrighter));
 //		mPaint.setStrokeWidth(10);
 //		drawLine(canvas, mX  50, mY, mX + 50, mY);
 
 		mPaint.setColor(Color.parseColor(mColorBrighter));
-		drawRect(canvas, mX, 0, rectWidth, rectHeight);
+		drawRect(canvas, mDateX, 0, rectWidth, rectHeight);
 
 		mPaint.setColor(Color.BLACK);
-		drawRect(canvas, mX + radiusRelative / 4, radiusRelative / 4, rectWidth
+		drawRect(canvas, mDateX + radiusRelative / 4, radiusRelative / 4, rectWidth
 				- radiusRelative / 2, rectHeight - radiusRelative / 2);
 
-		// 缁樺埗鍦嗗舰鏃ユ湡鏄剧ず妗嗙嚎
+		// 绘制日期显示的圆
 		mCircleRadius = 200;
 		mPaint.setColor(Color.parseColor(mColorBrighter));
-		drawCircle(mX, mY, mCircleRadius, canvas);
+		drawCircle(mDateX, mDateY, mCircleRadius, canvas);
 
 		radius = mCircleRadius - radiusRelative;
 		mPaint.setColor(Color.BLACK);
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mDateX, mDateY, radius, canvas);
 
 		radius = radius - radiusRelative;
 		mPaint.setColor(Color.parseColor(mColor));
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mDateX, mDateY, radius, canvas);
 
 		radius = radius - radiusRelative;
 		mPaint.setColor(Color.BLACK);
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mDateX, mDateY, radius, canvas);
 
 //		mPaint.setColor(Color.BLACK);
 //		mCircleRadius = radius + radiusRelative + 1;
@@ -102,27 +130,25 @@ public class MainShowView extends CircleView {
 	}
 	
 	/**
-	 * 缁樺埗鏄剧ず娓╁害鐨勭粍浠¶
+	 * 绘制温度组件
 	 * @param canvas
 	 */
 	public void drawTemperView(Canvas canvas){		
 		mCircleRadius = 150;
-		mX = mWidth - (3 * mCircleRadius / 2);
-		mY = mCircleRadius;	
 		mPaint.setColor(Color.parseColor(mColorBrighter));
-		drawCircle(mX, mY, mCircleRadius, canvas);
+		drawCircle(mTemperX, mTemperY, mCircleRadius, canvas);
 
 		radius = mCircleRadius - radiusRelative;
 		mPaint.setColor(Color.BLACK);
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mTemperX, mTemperY, radius, canvas);
 
 		radius = radius - radiusRelative;
 		mPaint.setColor(Color.parseColor(mColor));
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mTemperX, mTemperY, radius, canvas);
 
 		radius = radius - radiusRelative - (radiusRelative / 2);
 		mPaint.setColor(Color.BLACK);
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mTemperX, mTemperY, radius, canvas);
 
 //		mPaint.setColor(Color.BLACK);
 //		mCircleRadius = radius + (radiusRelative * 3 / 2) + 1;
@@ -130,34 +156,32 @@ public class MainShowView extends CircleView {
 	}
 	
 	/**
-	 * 缁樺埗鐢甸噺鏄剧ず
+	 * 绘制电源组件
 	 */
 	public void drawPowerView(Canvas canvas){
 		mCircleRadius = 150;
-		mX = 300;
-		mY = mHeight / 2;	
 		mPaint.setColor(Color.parseColor(mColorDarker));
-		drawCircle(mX, mY, mCircleRadius, canvas);
+		drawCircle(mPowerX, mPowerY, mCircleRadius, canvas);
 
 		radius = mCircleRadius - (radiusRelative / 2);
 		mPaint.setColor(Color.BLACK);
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mPowerX, mPowerY, radius, canvas);
 
 		radius = radius - radiusRelative;
 		mPaint.setColor(Color.parseColor(mColor));
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mPowerX, mPowerY, radius, canvas);
 
 		radius = radius - radiusRelative - (3 * radiusRelative / 2);
 		mPaint.setColor(Color.BLACK);
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mPowerX, mPowerY, radius, canvas);
 		
 		radius = radius - radiusRelative;
 		mPaint.setColor(Color.BLACK);
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mPowerX, mPowerY, radius, canvas);
 		
 		radius = radius - radiusRelative;
 		mPaint.setColor(Color.BLACK);
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mPowerX, mPowerY, radius, canvas);
 
 //		mPaint.setColor(Color.BLACK);
 //		mCircleRadius = radius + (radiusRelative * 3 / 2) + 1;
@@ -165,83 +189,78 @@ public class MainShowView extends CircleView {
 	}
 	
 	/**
-	 * 缁樺埗楹﹀厠椋庣粍浠¶
+	 * 绘制麦克风组件
 	 * @param canvas
 	 */
 	public void drawMicPhoneView(Canvas canvas){
 		mCircleRadius = 150;
-		mX = mWidth - (3 * mCircleRadius / 2);
-		mY = mHeight - (3 * mCircleRadius);	
 		mPaint.setColor(Color.parseColor(mColorBrighter));
-		drawCircle(mX, mY, mCircleRadius, canvas);
+		drawCircle(mMicX, mMicY, mCircleRadius, canvas);
 
 		radius = mCircleRadius - radiusRelative;
 		mPaint.setColor(Color.BLACK);
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mMicX, mMicY, radius, canvas);
 
 		radius = radius - radiusRelative;
 		mPaint.setColor(Color.parseColor(mColor));
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mMicX, mMicY, radius, canvas);
 
 		radius = radius - radiusRelative - (radiusRelative / 2);
 		mPaint.setColor(Color.BLACK);
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mMicX, mMicY, radius, canvas);
 	}
 	
 	/**
-	 * 缁樺埗鏂囨湰鏄剧ず缁勪欢
+	 * 绘制文本区域
 	 * @param canvas
 	 */
 	public void drawTextViewArea(Canvas canvas){
 		rectTextHeight = mHeight / 3;
-		rectTextWidth = mWidth / 2;
-		mX = mHeight / 4;
-		mY = mWidth / 2;
+		rectTextWidth = mWidth / 2;		
 		mPaint.setColor(Color.parseColor(mColorBrighter));
-		drawRect(canvas, mX, mY, rectTextWidth, rectTextHeight);
+		drawRect(canvas, mTextX, mTextY, rectTextWidth, rectTextHeight);
 
 		mPaint.setColor(Color.BLACK);
-		drawRect(canvas, mX + radiusRelative / 2, mY + radiusRelative / 2, rectTextWidth
+		drawRect(canvas, mTextX + radiusRelative / 2, mTextY + radiusRelative / 2, rectTextWidth
 				- radiusRelative , rectTextHeight - radiusRelative);
 	}
 	/**
-	 * 缁樺埗缃戠粶缁勪欢
+	 * 绘制网络状态组件
 	 * @param canvas
 	 */
 	public void drawNetStateView(Canvas canvas){
-		mX = 0;
-		mY = mHeight - (mNetCircleRadius / 2);
+		mPaint.reset();
 		mPaint.setColor(Color.parseColor(mColorBrighter));
-		drawCircle(mX, mY, mNetCircleRadius, canvas);
+		drawCircle(mNetworkX, mNetworkY, mNetCircleRadius, canvas);
 
 		radius = mNetCircleRadius - radiusRelative;
 		mPaint.setColor(Color.BLACK);
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mNetworkX, mNetworkY, radius, canvas);
 
 		radius = radius - radiusRelative;
 		mPaint.setColor(Color.parseColor(mColor));
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mNetworkX, mNetworkY, radius, canvas);
 
 		radius = radius - (2 * radiusRelative);
 		mPaint.setColor(Color.BLACK);
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mNetworkX, mNetworkY, radius, canvas);
 		
 		radius = radius - radiusRelative;
 		mPaint.setColor(Color.parseColor(mColor));
-		drawCircle(mX, mY, radius, canvas);
+		drawCircle(mNetworkX, mNetworkY, radius, canvas);
 		
 		mPaint.setColor(Color.RED);		
 		mPaint.setStrokeWidth(5);
 		mPaint.setTextSize(50);
-		drawText(canvas, mNetSting, mX + 5, mY - 50);
+		drawText(canvas, mNetSting, mNetworkX + 5, mNetworkY);
 		
 		mPaint.setColor(Color.parseColor(mColor));
-		mPaint.setTextSize(100);
-		drawText(canvas, mIp, mX + mNetCircleRadius, mY - 25);
+		mPaint.setTextSize(mTextSize);
+		drawText(canvas, mIp, mNetworkX + mNetCircleRadius, mNetworkY);
 	}
 
 	/**
-	 * 鏍规嵁鏁版嵁閲嶇粯缁勪欢
+	 * 重绘组件
 	 */
 	public void reDraw(int which, ExtraBean extra) {
 		switch (which) {
