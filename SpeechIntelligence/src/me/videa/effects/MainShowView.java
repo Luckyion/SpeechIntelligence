@@ -379,7 +379,7 @@ public class MainShowView extends CircleView {
 			mMonth = TimeUtils.getMonth(extra.getTimeBean().getMonth());
 			mDay = extra.getTimeBean().getDay() + "";
 			mWeek = TimeUtils.getWeek(extra.getTimeBean().getWeek());
-			mTime = extra.getTimeBean().getHour() + ":" + extra.getTimeBean().getMinite();
+			mTime = extra.getTimeBean().getHour() + ":" + TimeUtils.getMinute(extra.getTimeBean().getMinite());
 			break;
 		default:
 			break;

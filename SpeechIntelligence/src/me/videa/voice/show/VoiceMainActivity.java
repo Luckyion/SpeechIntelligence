@@ -6,6 +6,7 @@ import java.util.TimerTask;
 import me.videa.base.functions.BatteryReceiver;
 import me.videa.base.functions.DateTimeReceiver;
 import me.videa.effects.MainShowView;
+import me.videa.utils.TimeUtils;
 import me.videa.voice.R;
 import me.videa.voice.service.SpeechIntelligence;
 import android.app.Activity;
@@ -62,6 +63,7 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		mTel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 		registerBatteryReceiver();
 		registerDateTimeReceiver();
+		iniDateAndTime();
 	}
 
 	@Override
@@ -136,6 +138,17 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 				mHandler.sendEmptyMessage(NET_STATE);
 			}
 		}, 0, 6 * 1000);
+	}
+	/**
+	 * 初始化日期和时间信息
+	 */
+	private void iniDateAndTime(){
+		Message message = new Message();
+		Bundle mBundle = new Bundle();
+		mBundle.putSerializable("time", TimeUtils.getTimeBean());
+		message.what = HandlerWhat.DATE_STATE;
+		message.setData(mBundle);
+		mHandler.sendMessage(message);
 	}
 
 	/* Start the PhoneState listener */
