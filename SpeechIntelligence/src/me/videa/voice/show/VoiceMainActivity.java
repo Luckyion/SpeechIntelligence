@@ -27,8 +27,9 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
-@SuppressLint("HandlerLeak") @ContentView(R.layout.activity_voice_main)
-public class VoiceMainActivity extends Activity implements VoiceRecognitionListener, HandlerWhat {
+@SuppressLint("HandlerLeak")
+@ContentView(R.layout.activity_voice_main)
+public class VoiceMainActivity extends Activity implements HandlerWhat {
 
 	private final static String TAG = "VoiceMainActivity";
 
@@ -40,18 +41,20 @@ public class VoiceMainActivity extends Activity implements VoiceRecognitionListe
 	private Context mContext;
 	TelephonyManager mTel;
 	StateListener mStateListener;
-	private BatteryReceiver mBatteryReceiver;	
+	private BatteryReceiver mBatteryReceiver;
 	private DateTimeReceiver mDateTimeReceiver;
 	
-	/********语音合成********/
-	
-	private TextToSpeech mTextToSpeech;
-	
-	
+	private String text = "近几年，随着移动互联网的快速发展，国家电网电力建设飞速发展，电力企业移动信息化管理面临着前所未有的重大发展机遇。移动信息化技术在电力业务领域得到广泛应用，如电网调度自动化、电力负荷控制预测、营销采集系统等，现阶段电力行业信息化管理技术的应用正逐渐由操作层向管理层延伸，从单机、单项目向网络化、整体性、综合性应用发展，对大范围实时的移动信息化管理需求日益迫切";
+
+	/******** 语音合成 ********/
+
+	private TTSManager mTtsManager;
+
 	/******************************************/
 	private Toast mToast;
 
-	@SuppressLint("ShowToast") @Override
+	@SuppressLint("ShowToast")
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ViewUtils.inject(this);
@@ -62,6 +65,8 @@ public class VoiceMainActivity extends Activity implements VoiceRecognitionListe
 		registerBatteryReceiver();
 		registerDateTimeReceiver();
 		iniDateAndTime();
+		mTtsManager = new TTSManager(this, mHandler, mVoiceView);
+//		mTtsManager.start(text);
 		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 	}
 
@@ -109,7 +114,7 @@ public class VoiceMainActivity extends Activity implements VoiceRecognitionListe
 				break;
 			case DATE_STATE:
 				mBean = new ExtraBean();
-				mBean.setTimeBean((TimeBean)bundle.getSerializable("time"));
+				mBean.setTimeBean((TimeBean) bundle.getSerializable("time"));
 				mVoiceView.reDraw(DATE_STATE, mBean);
 				break;
 
@@ -118,13 +123,12 @@ public class VoiceMainActivity extends Activity implements VoiceRecognitionListe
 			}
 			super.dispatchMessage(msg);
 		}
-
 	}
 
 	/**
 	 * 初始化日期和时间信息
 	 */
-	private void iniDateAndTime(){
+	private void iniDateAndTime() {
 		Message message = new Message();
 		Bundle mBundle = new Bundle();
 		mBundle.putSerializable("time", TimeUtils.getTimeBean());
@@ -134,20 +138,14 @@ public class VoiceMainActivity extends Activity implements VoiceRecognitionListe
 	}
 
 	/* Start the PhoneState listener */
-
 	private class StateListener extends PhoneStateListener
 
 	{
-
 		/*
 		 * Get the Signal strength from the provider
 		 */
-
 		@Override
-		public void onSignalStrengthsChanged(SignalStrength signalStrength)
-
-		{
-
+		public void onSignalStrengthsChanged(SignalStrength signalStrength) {
 			super.onSignalStrengthsChanged(signalStrength);
 			mMessage = new Message();
 			mMessage.what = NET_STATE;
@@ -180,23 +178,22 @@ public class VoiceMainActivity extends Activity implements VoiceRecognitionListe
 	 */
 	private void registerDateTimeReceiver() {
 		// 注册广播接受者java代码
-		IntentFilter mFilter = new IntentFilter(
-				Intent.ACTION_TIME_TICK);
+		IntentFilter mFilter = new IntentFilter(Intent.ACTION_TIME_TICK);
 		// 创建广播接受者对象
 		mDateTimeReceiver = new DateTimeReceiver(mHandler);
 
 		// 注册receiver
 		registerReceiver(mDateTimeReceiver, mFilter);
 	}
-	
+
 	/**
 	 * 反注册所有广播
 	 */
-	private void unregisterReceiver(){
+	private void unregisterReceiver() {
 		unregisterReceiver(mBatteryReceiver);
 		unregisterReceiver(mDateTimeReceiver);
 	}
-	
+
 	private void showTip(final String str) {
 		mToast.setText(str);
 		mToast.show();
@@ -208,21 +205,6 @@ public class VoiceMainActivity extends Activity implements VoiceRecognitionListe
 	void startVoiceService() {
 		Intent mService = new Intent(this, SpeechIntelligence.class);
 		startService(mService);
-	}
-
-	@Override
-	public void onInit(String code) {
-		showTip(code);
-	}
-
-	@Override
-	public void onError(String code) {
-		showTip(code);
-	}
-
-	@Override
-	public void onReComoplete(String result) {
-		
 	}
 
 }

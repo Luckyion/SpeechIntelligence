@@ -45,7 +45,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            
         </activity>
+        
         <activity android:name="me.videa.functions.screenlock.ShowLockActivity" >
         </activity>
         <activity android:name="me.videa.show.RemoteFileShow" >

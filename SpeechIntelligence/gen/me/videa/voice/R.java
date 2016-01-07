@@ -98,18 +98,28 @@ public final class R {
         public static final int current_path_name=0x7f0b0001;
         public static final int file_name=0x7f0b0003;
         public static final int file_size=0x7f0b0004;
-        public static final int iatRadioCloud=0x7f0b000e;
-        public static final int iatRadioLocal=0x7f0b000f;
-        public static final int iatRadioMix=0x7f0b0010;
-        public static final int iat_recognize=0x7f0b0011;
-        public static final int iat_service=0x7f0b0013;
-        public static final int iat_stop=0x7f0b0012;
-        public static final int iat_text=0x7f0b000c;
+        public static final int iatRadioCloud=0x7f0b0018;
+        public static final int iatRadioLocal=0x7f0b0019;
+        public static final int iatRadioMix=0x7f0b001a;
+        public static final int iat_recognize=0x7f0b001b;
+        public static final int iat_service=0x7f0b001d;
+        public static final int iat_stop=0x7f0b001c;
+        public static final int iat_text=0x7f0b0016;
+        public static final int image_tts_set=0x7f0b000b;
         public static final int mainView=0x7f0b0005;
-        public static final int main_title=0x7f0b000b;
+        public static final int main_title=0x7f0b0015;
         public static final int ok=0x7f0b000a;
-        public static final int radioGroup=0x7f0b000d;
+        public static final int radioGroup=0x7f0b0017;
         public static final int title=0x7f0b0007;
+        public static final int tts_btn_person_select=0x7f0b0010;
+        public static final int tts_cancel=0x7f0b0012;
+        public static final int tts_pause=0x7f0b0013;
+        public static final int tts_play=0x7f0b0011;
+        public static final int tts_radioCloud=0x7f0b000e;
+        public static final int tts_radioLocal=0x7f0b000f;
+        public static final int tts_rediogroup=0x7f0b000d;
+        public static final int tts_resume=0x7f0b0014;
+        public static final int tts_text=0x7f0b000c;
     }
     public static final class layout {
         public static final int activity_remote_file_show=0x7f030000;
@@ -117,7 +127,8 @@ public final class R {
         public static final int activity_screen_lock=0x7f030002;
         public static final int activity_voice_main=0x7f030003;
         public static final int superman_alertdialog=0x7f030004;
-        public static final int voice_main_activity=0x7f030005;
+        public static final int ttsdemo=0x7f030005;
+        public static final int voice_main_activity=0x7f030006;
     }
     public static final class raw {
         public static final int androidpn=0x7f050000;
