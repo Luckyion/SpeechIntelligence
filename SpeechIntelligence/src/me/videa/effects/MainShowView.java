@@ -2,8 +2,8 @@ package me.videa.effects;
 
 import me.videa.application.MyApplication;
 import me.videa.utils.TimeUtils;
-import me.videa.voice.show.ExtraBean;
 import me.videa.voice.show.HandlerWhat;
+import me.videa.voice.show.beans.ExtraBean;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;

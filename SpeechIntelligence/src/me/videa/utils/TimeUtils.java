@@ -3,7 +3,7 @@ package me.videa.utils;
 import java.util.Calendar;
 import java.util.Locale;
 
-import me.videa.voice.show.TimeBean;
+import me.videa.voice.show.beans.TimeBean;
 
 
 public class TimeUtils {

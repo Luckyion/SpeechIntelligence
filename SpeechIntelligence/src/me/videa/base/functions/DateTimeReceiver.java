@@ -1,13 +1,7 @@
 package me.videa.base.functions;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Timer;
-
 import me.videa.utils.TimeUtils;
 import me.videa.voice.show.HandlerWhat;
-import me.videa.voice.show.TimeBean;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;

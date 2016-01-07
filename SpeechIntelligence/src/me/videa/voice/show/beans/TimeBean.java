@@ -1,4 +1,4 @@
-package me.videa.voice.show;
+package me.videa.voice.show.beans;
 
 import java.io.Serializable;
 

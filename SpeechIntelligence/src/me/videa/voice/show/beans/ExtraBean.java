@@ -1,4 +1,4 @@
-﻿package me.videa.voice.show;
+﻿package me.videa.voice.show.beans;
 
 import java.io.Serializable;
 
@@ -16,6 +16,8 @@ public class ExtraBean implements Serializable{
 	private int batteryLevel;
 	
 	private TimeBean timeBean;
+	
+	private TTSBean ttsBean;
 
 	public int getSingleStrength() {
 		return singleStrength;
@@ -47,6 +49,14 @@ public class ExtraBean implements Serializable{
 
 	public void setTimeBean(TimeBean timeBean) {
 		this.timeBean = timeBean;
+	}
+
+	public TTSBean getTtsBean() {
+		return ttsBean;
+	}
+
+	public void setTtsBean(TTSBean ttsBean) {
+		this.ttsBean = ttsBean;
 	}
 	
 	
