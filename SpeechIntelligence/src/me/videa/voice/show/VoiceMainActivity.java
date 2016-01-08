@@ -1,12 +1,17 @@
 ﻿package me.videa.voice.show;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import me.videa.base.functions.BatteryReceiver;
 import me.videa.base.functions.DateTimeReceiver;
-import me.videa.base.functions.TextToSpeech;
 import me.videa.effects.MainShowView;
 import me.videa.utils.TimeUtils;
 import me.videa.voice.R;
 import me.videa.voice.service.SpeechIntelligence;
+import me.videa.voice.show.beans.ConversationAdapter;
 import me.videa.voice.show.beans.ExtraBean;
 import me.videa.voice.show.beans.TimeBean;
 import android.annotation.SuppressLint;
@@ -21,6 +26,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.lidroid.xutils.ViewUtils;
@@ -43,12 +49,17 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	StateListener mStateListener;
 	private BatteryReceiver mBatteryReceiver;
 	private DateTimeReceiver mDateTimeReceiver;
+	@ViewInject(R.id.conversation)
+	private ListView mConversationView;
+	private ConversationAdapter mAdapter;
+	private List<String> mConversations;
 	
-	private String text = "近几年，随着移动互联网的快速发展，国家电网电力建设飞速发展，电力企业移动信息化管理面临着前所未有的重大发展机遇。移动信息化技术在电力业务领域得到广泛应用，如电网调度自动化、电力负荷控制预测、营销采集系统等，现阶段电力行业信息化管理技术的应用正逐渐由操作层向管理层延伸，从单机、单项目向网络化、整体性、综合性应用发展，对大范围实时的移动信息化管理需求日益迫切";
+	static int counter = 0;
 
 	/******** 语音合成 ********/
 
 	private TTSManager mTtsManager;
+	private RecognitionManager mRecognitionManager;
 
 	/******************************************/
 	private Toast mToast;
@@ -65,8 +76,11 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		registerBatteryReceiver();
 		registerDateTimeReceiver();
 		iniDateAndTime();
-		mTtsManager = new TTSManager(this, mHandler, mVoiceView);
-//		mTtsManager.start(text);
+//		mTtsManager = new TTSManager(this, mHandler, mVoiceView);//启动语音合成
+		mRecognitionManager = new RecognitionManager(this, mHandler, mVoiceView);//启动语音识别
+		mConversations = new ArrayList<String>();
+		mAdapter = new ConversationAdapter(this, mConversations);
+        mConversationView.setAdapter(mAdapter);
 		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 	}
 
@@ -117,12 +131,52 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 				mBean.setTimeBean((TimeBean) bundle.getSerializable("time"));
 				mVoiceView.reDraw(DATE_STATE, mBean);
 				break;
+			case TTS_STATE_INIT:
+				testTimer();
+				break;
+			case CONVERSATION_HOST:
+				bundle = msg.getData();
+				mConversations.add("Me : " + bundle.getString("data"));
+				mAdapter.notifyDataSetChanged();
+				mConversationView.setSelection(mAdapter.getCount());
+				break;
+			case CONVERSATION_VICKIE:
+				bundle = msg.getData();
+				mConversations.add("Vickie : " + bundle.getString("data"));
+				mTtsManager.start(bundle.getString("data"));
+				mAdapter.notifyDataSetChanged();
+				mConversationView.setSelection(mAdapter.getCount());
+				break;
 
 			default:
 				break;
 			}
 			super.dispatchMessage(msg);
 		}
+	}
+	
+	private void testTimer(){		
+		
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Message msg = new Message();
+				Bundle mBundle = new Bundle();
+				mBundle.putString("data", counter + "");
+				msg.setData(mBundle);
+				if(counter % 2 == 0){
+					msg.what = HandlerWhat.CONVERSATION_VICKIE;
+				}else{
+					msg.what = HandlerWhat.CONVERSATION_HOST;
+				}
+				
+				mHandler.sendMessage(msg);	
+				counter++;
+			}
+		}, 0, 5 * 1000);
 	}
 
 	/**
@@ -139,7 +193,6 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 
 	/* Start the PhoneState listener */
 	private class StateListener extends PhoneStateListener
-
 	{
 		/*
 		 * Get the Signal strength from the provider
@@ -168,7 +221,6 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 				Intent.ACTION_BATTERY_CHANGED);
 		// 创建广播接受者对象
 		mBatteryReceiver = new BatteryReceiver(mHandler);
-
 		// 注册receiver
 		registerReceiver(mBatteryReceiver, intentFilter);
 	}
@@ -181,7 +233,6 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		IntentFilter mFilter = new IntentFilter(Intent.ACTION_TIME_TICK);
 		// 创建广播接受者对象
 		mDateTimeReceiver = new DateTimeReceiver(mHandler);
-
 		// 注册receiver
 		registerReceiver(mDateTimeReceiver, mFilter);
 	}

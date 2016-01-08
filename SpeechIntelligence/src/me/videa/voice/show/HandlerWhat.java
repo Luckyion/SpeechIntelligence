@@ -6,8 +6,17 @@ public interface HandlerWhat {
 	public static int BATTERY_STATE = 1;
 	public static int DATE_STATE = 3;
 	public static int TTS_STATE = 4;
+	public static int TTS_STATE_INIT = 40;
 	public static int TTS_PLAY_STATE = 41;
 	public static int TTS_RESULT_STATE = 42;
+	public static int CONVERSATION_VICKIE = 5;
+	public static int CONVERSATION_HOST = 6;
+	public static int RECOGNITION = 7;
+	public static int RECOGNITION_INIT = 71;
+	public static int RECOGNITION_RESULT_STATE = 72;
+	
+	
+	public static int TEST = 99;
 
 }
 

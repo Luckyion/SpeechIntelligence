@@ -6,9 +6,8 @@ import android.net.wifi.WifiManager;
 
 public class NetState {
 	
-	  /** 
-     * 将地址转换成IP地址
-     *  
+	/** 
+     * 将地址转换成IP地址 
      * @param ipInt 
      * @return 
      */  

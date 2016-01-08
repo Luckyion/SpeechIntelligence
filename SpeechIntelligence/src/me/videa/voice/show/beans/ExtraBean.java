@@ -18,6 +18,8 @@ public class ExtraBean implements Serializable{
 	private TimeBean timeBean;
 	
 	private TTSBean ttsBean;
+	
+	private RecognitionBean recognitionBean;
 
 	public int getSingleStrength() {
 		return singleStrength;
@@ -57,6 +59,14 @@ public class ExtraBean implements Serializable{
 
 	public void setTtsBean(TTSBean ttsBean) {
 		this.ttsBean = ttsBean;
+	}
+
+	public RecognitionBean getRecognitionBean() {
+		return recognitionBean;
+	}
+
+	public void setRecognitionBean(RecognitionBean recognitionBean) {
+		this.recognitionBean = recognitionBean;
 	}
 	
 	
