@@ -11,8 +11,9 @@ public interface HandlerWhat {
 	public static int TTS_RESULT_STATE = 42;
 	public static int CONVERSATION_VICKIE = 5;
 	public static int CONVERSATION_HOST = 6;
-	public static int RECOGNITION = 7;
-	public static int RECOGNITION_INIT = 71;
+	public static int RECOGNITION_STATE = 7;
+	public static int RECOGNITION_VOLUME_STATE = 73;
+	public static int RECOGNITION_STATE_INIT = 71;
 	public static int RECOGNITION_RESULT_STATE = 72;
 	
 	
