@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import me.videa.base.actions.BaseActionAnalysis;
 import me.videa.base.functions.BatteryReceiver;
 import me.videa.base.functions.DateTimeReceiver;
 import me.videa.effects.MainShowView;
+import me.videa.functions.local.FileExplore;
 import me.videa.utils.TimeUtils;
 import me.videa.voice.R;
 import me.videa.voice.service.SpeechIntelligence;
@@ -26,7 +28,9 @@ import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.lidroid.xutils.ViewUtils;
@@ -51,8 +55,11 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	private DateTimeReceiver mDateTimeReceiver;
 	@ViewInject(R.id.conversation)
 	private ListView mConversationView;
+	@ViewInject(R.id.viewContainer)
+	private RelativeLayout mLayout;
 	private ConversationAdapter mAdapter;
 	private List<String> mConversations;
+	private FileExplore mExplore;
 	
 	static int counter = 0;
 
@@ -77,11 +84,16 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		registerDateTimeReceiver();
 		iniDateAndTime();
 //		mTtsManager = new TTSManager(this, mHandler, mVoiceView);//启动语音合成
-		mRecognitionManager = new RecognitionManager(this, mHandler, mVoiceView);//启动语音识别
+//		mRecognitionManager = new RecognitionManager(this, mHandler, mVoiceView);//启动语音识别
 		mConversations = new ArrayList<String>();
 		mAdapter = new ConversationAdapter(this, mConversations);
         mConversationView.setAdapter(mAdapter);
 		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+//		BaseActionAnalysis mActionAnalysis = new BaseActionAnalysis(this);
+//		mActionAnalysis.AnalyseAction("发短信给测试");
+		mExplore = new FileExplore(this);
+		mLayout.setVisibility(View.VISIBLE);
+		mLayout.addView(mExplore);		
 	}
 
 	@Override

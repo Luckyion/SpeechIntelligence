@@ -3,14 +3,14 @@ package me.videa.base.db.entity;
 import com.lidroid.xutils.db.annotation.Column;
 import com.lidroid.xutils.db.annotation.Table;
 
-@Table(name="MWT_IS_USER")
+@Table(name="ACTIONS")
 public class Action extends EntityBase{
 	
 	@Column(column = "ACTION_ID")
 	private String action_id;
 	@Column(column = "ACTION")
 	private String action;
-	@Column(column = "SWMANTIC")
+	@Column(column = "SEMANTIC")
 	private String semantic;//鍔犲瘑璇­涔
 	@Column(column = "ENCRYPT_ROLE")
 	private String encrypt_role;//鍔犲瘑瑙勫垯
@@ -155,8 +155,7 @@ public class Action extends EntityBase{
 
 	@Override
     public String toString() {
-        return "MWT_IS_USER{" +
-                "user_id=" + getId() +
+        return "ACTIONS{" +
                 ", action_id='" + action_id + '\'' +
                 ", action='" + action + '\'' +
                 ", semantic=" + semantic +

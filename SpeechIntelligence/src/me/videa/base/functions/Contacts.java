@@ -7,6 +7,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.util.Log;
 
 public class Contacts {
@@ -83,7 +84,8 @@ public class Contacts {
     	String number = null;
         Uri uri = Uri.parse("content://com.android.contacts/data/phones/filter/" + name);
         ContentResolver resolver = mContext.getContentResolver();
-        Cursor cursor = resolver.query(uri, new String[]{"display_number"}, null, null, null);
+        Cursor cursor = resolver.query(uri, new String[]{Phone.NUMBER}, null, null, null);
+//        Cursor cursor = resolver.query(uri, new String[]{"display_number"}, null, null, null);
         if (cursor.moveToFirst()) {
         	number = cursor.getString(0);
             Log.i(TAG, number);
