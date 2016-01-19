@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import me.videa.base.actions.BaseActionAnalysis;
 import me.videa.base.functions.BatteryReceiver;
 import me.videa.base.functions.DateTimeReceiver;
 import me.videa.effects.MainShowView;
@@ -32,6 +31,7 @@ import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -79,6 +79,7 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		ViewUtils.inject(this);
 		mContext = this;
 		mHandler = new ViewHandler();
@@ -98,7 +99,7 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 			@Override
 			public void setResult(Bundle data) {
 				// TODO Auto-generated method stub
-				Thread mThread = LoaderEngine.get(mContext, mHandler, data.getString("data"));
+				Thread mThread = LoaderEngine.getLoaderEngine(mContext, mHandler, data.getString("data"));
 				mThread.start();
 				mNovelShow.setVisibility(View.GONE);
 			}
@@ -130,6 +131,10 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	@Override
 	protected void onDestroy() {
 		unregisterReceiver();
+		LoaderEngine mEngine = LoaderEngine.get();
+		if(mEngine != null){
+			LoaderEngine.get().setStop(true);
+		}		
 		super.onDestroy();
 	}
 

@@ -384,6 +384,9 @@ public class MainShowView extends CircleView {
 		case HandlerWhat.RECOGNITION_VOLUME_STATE:
 			mMic = extra.getRecognitionBean().getProgress() + "";
 			break;
+		case HandlerWhat.TTS_STATE:
+			mMic = extra.getTtsBean().getProgress() + "";
+			break;
 		default:
 			break;
 		}

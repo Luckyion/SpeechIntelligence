@@ -7,8 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.baidu.a.a.a.a.c;
-
+import me.videa.utils.LocalFileUtil;
 import me.videa.utils.SharePreferenceHelper;
 import me.videa.voice.async.AsyncCallback;
 import me.videa.voice.async.Result;
@@ -35,6 +34,8 @@ public class LoaderEngine extends Thread{
 	private String mRes;
 	private Handler mHandler;
 	BroadcastReceiver mBroadcastReceiver;
+	private static final String NOVEL_KEY = "novel_loaded";
+	private boolean isStop = false;
 	
 	
 	private LoaderEngine(Context context, Handler handler, String path) {
@@ -44,14 +45,18 @@ public class LoaderEngine extends Thread{
 		mBroadcastReceiver = new NotificationReceiver(context);
 		IntentFilter mFilter = new IntentFilter("me.videa.ready");
 		mContext.registerReceiver(mBroadcastReceiver, mFilter);
-		isLoaded = SharePreferenceHelper.getInstance(mContext).getLong("novel_loaded", 0l);
+		isLoaded = SharePreferenceHelper.getInstance(mContext).getLong(NOVEL_KEY, 0l);
 	}
 	
 	
-	public static LoaderEngine get(Context context, Handler handler, String path){
+	public static LoaderEngine getLoaderEngine(Context context, Handler handler, String path){
 		if(mEngine == null){
 			mEngine = new LoaderEngine(context, handler, path);			
 		}
+		return mEngine;
+	}
+	
+	public static LoaderEngine get(){
 		return mEngine;
 	}
 	
@@ -61,11 +66,13 @@ public class LoaderEngine extends Thread{
 			String res;
 			BufferedReader mBufferedReader = getBufferedReader();
 			while ((res = mBufferedReader.readLine()) != null) {
+				if(isStop){
+					break;
+				}
 				mRollCounter++;
 				mRes += res.replace("null", "");
-				if(mRollCounter == 5){
-					synchronized (this) {
-						isLoaded += mRes.length();
+				if(mRollCounter == 2){
+					synchronized (this) {						
 						readNovel(mRes);
 						mEngine.wait();
 					}
@@ -85,22 +92,25 @@ public class LoaderEngine extends Thread{
 	}
 	
 	private BufferedReader getBufferedReader() throws IOException{
-		if(mNovelPath == null || mNovelPath.equals("")){
+		File file = new File(mNovelPath);
+		if(mNovelPath == null || mNovelPath.equals("") || file == null){
 			Result mResult = new Result();
 			mResult.setErrorMsg("文件路径错误");
 			mResult.setSuc(false);
 			mCallback.callback(mResult);
 			return null;
-		}
-		FileInputStream mFileInputStream = new FileInputStream(new File(mNovelPath));
+		}		
+		FileInputStream mFileInputStream = new FileInputStream(file);
 		mFileInputStream.skip(isLoaded);
-		BufferedReader mBufferedReader = new BufferedReader(new InputStreamReader(mFileInputStream, "GBK"));
+		String code = LocalFileUtil.getCharset(file);
+		BufferedReader mBufferedReader = new BufferedReader(new InputStreamReader(mFileInputStream, code));
 		return mBufferedReader;
 	}
 	
 	
 	void readNovel(String novel){
 		sendToView(novel);
+		SharePreferenceHelper.getInstance(mContext).setLong(NOVEL_KEY, isLoaded);
 		TTSManager manager = TTSManager.get();
 		manager.start(novel);
 	}
@@ -120,6 +130,7 @@ public class LoaderEngine extends Thread{
 	public void notifyEngie(){
 		synchronized (this) {
 			mRollCounter = 0;
+			isLoaded += mRes.length();
 			mRes = "";
 			mEngine.notify();
 		}
@@ -139,6 +150,15 @@ public class LoaderEngine extends Thread{
 		mContext.unregisterReceiver(mBroadcastReceiver);
 	}
 	
+	public boolean isStop() {
+		return isStop;
+	}
+
+
+	public void setStop(boolean isStop) {
+		this.isStop = isStop;
+	}
+
 	class NotificationReceiver extends BroadcastReceiver{
 		
 		public NotificationReceiver(Context context) {
@@ -154,9 +174,6 @@ public class LoaderEngine extends Thread{
 				Log.d(TAG, "快读完啦");
 				notifyEngie();
 			}
-		}
-		
+		}		
 	}
-	
-
 }
