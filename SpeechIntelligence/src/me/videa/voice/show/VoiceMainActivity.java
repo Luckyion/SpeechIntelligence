@@ -10,6 +10,9 @@ import me.videa.base.functions.BatteryReceiver;
 import me.videa.base.functions.DateTimeReceiver;
 import me.videa.effects.MainShowView;
 import me.videa.functions.local.FileExplore;
+import me.videa.functions.local.SelectorResult;
+import me.videa.functions.novelloader.LoaderEngine;
+import me.videa.functions.novelloader.NovelShow;
 import me.videa.utils.TimeUtils;
 import me.videa.voice.R;
 import me.videa.voice.service.SpeechIntelligence;
@@ -60,6 +63,7 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	private ConversationAdapter mAdapter;
 	private List<String> mConversations;
 	private FileExplore mExplore;
+	private NovelShow mNovelShow;
 	
 	static int counter = 0;
 
@@ -83,17 +87,38 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		registerBatteryReceiver();
 		registerDateTimeReceiver();
 		iniDateAndTime();
-//		mTtsManager = new TTSManager(this, mHandler, mVoiceView);//启动语音合成
+		mTtsManager = TTSManager.initManager(this, mHandler, mVoiceView);
 //		mRecognitionManager = new RecognitionManager(this, mHandler, mVoiceView);//启动语音识别
 		mConversations = new ArrayList<String>();
 		mAdapter = new ConversationAdapter(this, mConversations);
         mConversationView.setAdapter(mAdapter);
 		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+		mNovelShow = new NovelShow(this, new SelectorResult() {
+			
+			@Override
+			public void setResult(Bundle data) {
+				// TODO Auto-generated method stub
+				Thread mThread = LoaderEngine.get(mContext, mHandler, data.getString("data"));
+				mThread.start();
+				mNovelShow.setVisibility(View.GONE);
+			}
+		});
+		mLayout.setVisibility(View.VISIBLE);
+		mLayout.addView(mNovelShow);
 //		BaseActionAnalysis mActionAnalysis = new BaseActionAnalysis(this);
 //		mActionAnalysis.AnalyseAction("发短信给测试");
-		mExplore = new FileExplore(this);
+		/*
+		mExplore = new FileExplore(this, new SelectorResult() {
+			
+			@Override
+			public void setResult(Bundle data) {
+				// TODO Auto-generated method stub
+				String path = data.getString("data");
+				Log.d(TAG, path);
+			}
+		}, null);
 		mLayout.setVisibility(View.VISIBLE);
-		mLayout.addView(mExplore);		
+		mLayout.addView(mExplore);*/		
 	}
 
 	@Override
@@ -109,7 +134,8 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	}
 
 	@Override
-	public void onBackPressed() {
+	public void onBackPressed() {	
+//		mExplore.onBackPressed();
 		super.onBackPressed();
 	}
 
@@ -144,7 +170,7 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 				mVoiceView.reDraw(DATE_STATE, mBean);
 				break;
 			case TTS_STATE_INIT:
-				testTimer();
+//				testTimer();
 				break;
 			case CONVERSATION_HOST:
 				bundle = msg.getData();

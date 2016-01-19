@@ -2,9 +2,11 @@ package me.videa.voice.show;
 
 import me.videa.base.functions.TextToSpeech;
 import me.videa.effects.MainShowView;
+import me.videa.utils.DebugUtil;
 import me.videa.voice.show.beans.ExtraBean;
 import me.videa.voice.show.beans.TTSBean;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,12 +23,27 @@ public class TTSManager implements TTSLinstener{
 	private TextToSpeech mTextToSpeech;
 	private ExtraBean mBean;
 	private TTSBean ttsBean;
+	private Context mContext;
+	private static TTSManager manager;
+	private boolean isNotified = false;
 	
-	public TTSManager(Context context, Handler handler, MainShowView view){
+	private TTSManager(Context context, Handler handler, MainShowView view){
 		this.mHandler = handler;
 		this.mShowView = view;
+		this.mContext = context;
 		mTextToSpeech = new TextToSpeech(context, this);
 		mTextToSpeech.initSpeechSynthesizer();
+	}
+	
+	public static TTSManager initManager(Context context, Handler handler, MainShowView view){
+		if(manager == null){
+			manager = new TTSManager(context, handler, view);
+		}
+		return manager;		
+	}
+	
+	public static TTSManager get(){
+		return manager;
 	}
 	
 	/**
@@ -34,6 +51,7 @@ public class TTSManager implements TTSLinstener{
 	 * @param text
 	 */
 	public void start(String text){
+		isNotified = false;
 		mTextToSpeech.start(text);
 	}
 	/**
@@ -58,6 +76,9 @@ public class TTSManager implements TTSLinstener{
 	 * @param progress
 	 */
 	private void updateProgress(int progress){
+		if(mShowView == null){
+			return;
+		}
 		mBean = new ExtraBean();
 		ttsBean = new TTSBean();
 		ttsBean.setProgress(progress);
@@ -70,6 +91,9 @@ public class TTSManager implements TTSLinstener{
 	 * @param status
 	 */
 	private void updatePlayStatus(String status){
+		if(mShowView == null){
+			return;
+		}
 		mBean = new ExtraBean();
 		ttsBean = new TTSBean();
 		ttsBean.setStatus(status);
@@ -79,7 +103,8 @@ public class TTSManager implements TTSLinstener{
 
 	@Override
 	public void onSpeakProgress(int progress) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
+		DebugUtil.d(TAG, "播放进度: " + progress);
 		updateProgress(progress);
 	}
 
@@ -110,7 +135,10 @@ public class TTSManager implements TTSLinstener{
 	@Override
 	public void onSpeechComplete() {
 		// TODO Auto-generated method stub
-		
+		if(!isNotified){
+			isNotified = true;
+			sendNotify();
+		}
 	}
 
 	@Override
@@ -130,6 +158,13 @@ public class TTSManager implements TTSLinstener{
 		mHandler.sendEmptyMessage(HandlerWhat.TTS_STATE_INIT);
 	}
 	
-	
+	/**
+	 * 发送广播
+	 */
+	void sendNotify(){
+		Intent intent = new Intent();
+		intent.setAction("me.videa.ready");
+		mContext.sendBroadcast(intent);
+	}
 
 }
