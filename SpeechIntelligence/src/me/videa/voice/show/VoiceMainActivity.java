@@ -10,6 +10,9 @@ import me.videa.base.functions.DateTimeReceiver;
 import me.videa.effects.MainShowView;
 import me.videa.functions.local.FileExplore;
 import me.videa.functions.local.SelectorResult;
+import me.videa.functions.map.BDMapView;
+import me.videa.functions.map.GpsServiceManager;
+import me.videa.functions.map.LocationReceiver;
 import me.videa.functions.novelloader.LoaderEngine;
 import me.videa.functions.novelloader.NovelShow;
 import me.videa.utils.TimeUtils;
@@ -64,7 +67,10 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	private List<String> mConversations;
 	private FileExplore mExplore;
 	private NovelShow mNovelShow;
-//	private BDMapView mBdMapView;
+	
+	/****************地图****************/
+	private BDMapView mBdMapView;
+	private LocationReceiver mLocationReceiver;
 
 	static int counter = 0;
 
@@ -100,9 +106,7 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		/**************************/
 //		Intent mIntent  = new Intent(this, LandmarkActivity.class);
 //		startActivity(mIntent);
-//		mBdMapView = new BDMapView(this);
-//		mLayout.setVisibility(View.VISIBLE);
-//		mLayout.addView(mBdMapView);
+		startMapComponent();
 	}
 
 	private void initViews() {
@@ -306,6 +310,15 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	void startVoiceService() {
 		Intent mService = new Intent(this, SpeechIntelligence.class);
 		startService(mService);
+	}
+	
+	void startMapComponent(){
+		mBdMapView = new BDMapView(this);		
+		mLocationReceiver = new LocationReceiver(mBdMapView);
+		GpsServiceManager.startGpsService(this);
+		GpsServiceManager.registerBorcastReceiver(this, mLocationReceiver);
+		mLayout.setVisibility(View.VISIBLE);
+		mLayout.addView(mBdMapView);
 	}
 
 }
