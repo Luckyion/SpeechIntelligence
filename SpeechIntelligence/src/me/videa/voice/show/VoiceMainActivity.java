@@ -64,7 +64,8 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	private List<String> mConversations;
 	private FileExplore mExplore;
 	private NovelShow mNovelShow;
-	
+//	private BDMapView mBdMapView;
+
 	static int counter = 0;
 
 	/******** 语音合成 ********/
@@ -79,7 +80,7 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
 		ViewUtils.inject(this);
 		mContext = this;
 		mHandler = new ViewHandler();
@@ -89,37 +90,44 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		registerDateTimeReceiver();
 		iniDateAndTime();
 		mTtsManager = TTSManager.initManager(this, mHandler, mVoiceView);
-//		mRecognitionManager = new RecognitionManager(this, mHandler, mVoiceView);//启动语音识别
+		// mRecognitionManager = new RecognitionManager(this, mHandler,
+		// mVoiceView);//启动语音识别
 		mConversations = new ArrayList<String>();
 		mAdapter = new ConversationAdapter(this, mConversations);
-        mConversationView.setAdapter(mAdapter);
+		mConversationView.setAdapter(mAdapter);
 		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+		
+		/**************************/
+//		Intent mIntent  = new Intent(this, LandmarkActivity.class);
+//		startActivity(mIntent);
+//		mBdMapView = new BDMapView(this);
+//		mLayout.setVisibility(View.VISIBLE);
+//		mLayout.addView(mBdMapView);
+	}
+
+	private void initViews() {
 		mNovelShow = new NovelShow(this, new SelectorResult() {
-			
+
 			@Override
 			public void setResult(Bundle data) {
 				// TODO Auto-generated method stub
-				Thread mThread = LoaderEngine.getLoaderEngine(mContext, mHandler, data.getString("data"));
+				Thread mThread = LoaderEngine.getLoaderEngine(mContext,
+						mHandler, data.getString("data"));
 				mThread.start();
 				mNovelShow.setVisibility(View.GONE);
 			}
 		});
-		mLayout.setVisibility(View.VISIBLE);
-		mLayout.addView(mNovelShow);
-//		BaseActionAnalysis mActionAnalysis = new BaseActionAnalysis(this);
-//		mActionAnalysis.AnalyseAction("发短信给测试");
+		
+		// BaseActionAnalysis mActionAnalysis = new BaseActionAnalysis(this);
+		// mActionAnalysis.AnalyseAction("发短信给测试");
 		/*
-		mExplore = new FileExplore(this, new SelectorResult() {
-			
-			@Override
-			public void setResult(Bundle data) {
-				// TODO Auto-generated method stub
-				String path = data.getString("data");
-				Log.d(TAG, path);
-			}
-		}, null);
-		mLayout.setVisibility(View.VISIBLE);
-		mLayout.addView(mExplore);*/		
+		 * mExplore = new FileExplore(this, new SelectorResult() {
+		 * 
+		 * @Override public void setResult(Bundle data) { // TODO Auto-generated
+		 * method stub String path = data.getString("data"); Log.d(TAG, path); }
+		 * }, null); mLayout.setVisibility(View.VISIBLE);
+		 * mLayout.addView(mExplore);
+		 */
 	}
 
 	@Override
@@ -132,15 +140,15 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	protected void onDestroy() {
 		unregisterReceiver();
 		LoaderEngine mEngine = LoaderEngine.get();
-		if(mEngine != null){
+		if (mEngine != null) {
 			LoaderEngine.get().setStop(true);
-		}		
+		}
 		super.onDestroy();
 	}
 
 	@Override
-	public void onBackPressed() {	
-//		mExplore.onBackPressed();
+	public void onBackPressed() {
+		// mExplore.onBackPressed();
 		super.onBackPressed();
 	}
 
@@ -175,7 +183,7 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 				mVoiceView.reDraw(DATE_STATE, mBean);
 				break;
 			case TTS_STATE_INIT:
-//				testTimer();
+				// testTimer();
 				break;
 			case CONVERSATION_HOST:
 				bundle = msg.getData();
@@ -197,12 +205,12 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 			super.dispatchMessage(msg);
 		}
 	}
-	
-	private void testTimer(){		
-		
+
+	private void testTimer() {
+
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
-			
+
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
@@ -210,13 +218,13 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 				Bundle mBundle = new Bundle();
 				mBundle.putString("data", counter + "");
 				msg.setData(mBundle);
-				if(counter % 2 == 0){
+				if (counter % 2 == 0) {
 					msg.what = HandlerWhat.CONVERSATION_VICKIE;
-				}else{
+				} else {
 					msg.what = HandlerWhat.CONVERSATION_HOST;
 				}
-				
-				mHandler.sendMessage(msg);	
+
+				mHandler.sendMessage(msg);
 				counter++;
 			}
 		}, 0, 5 * 1000);
@@ -235,8 +243,7 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	}
 
 	/* Start the PhoneState listener */
-	private class StateListener extends PhoneStateListener
-	{
+	private class StateListener extends PhoneStateListener {
 		/*
 		 * Get the Signal strength from the provider
 		 */

@@ -2,14 +2,11 @@ package me.videa.uncaughtexceptionhandler;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 
-import com.baidu.mapapi.utils.e;
-
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.os.Looper;
 import android.util.Log;
 
 /**

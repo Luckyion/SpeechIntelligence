@@ -27,7 +27,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" >
     </uses-permission>   
     
-
+	<!-- android:name="me.videa.voice.show.VoiceMainActivity" -->
     <application
         android:name="me.videa.application.MyApplication"
         android:allowBackup="true"
@@ -35,7 +35,7 @@
         android:label="SpeechIntelligence"
         android:theme="@android:style/Theme.Black.NoTitleBar" >
         <activity
-            android:name="me.videa.voice.show.VoiceMainActivity"
+            android:name="me.videa.functions.map.BaseMap"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
             android:icon="@drawable/icon"
             android:label="SpeechIntelligence"
@@ -50,6 +50,7 @@
         
         <activity android:name="me.videa.functions.screenlock.ShowLockActivity" >
         </activity>
+        
         <activity android:name="me.videa.show.RemoteFileShow" >
         </activity>
 
@@ -72,6 +73,11 @@
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </service>
+        
+        <meta-data 
+       		android:name="com.baidu.lbsapi.API_KEY"  
+      		android:value="7fuLGUDpuGreAKeBIkavMiqV">
+   		</meta-data> 
 
         <meta-data
             android:name="IFLYTEK_APPKEY"
