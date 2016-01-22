@@ -147,6 +147,7 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		if (mEngine != null) {
 			LoaderEngine.get().setStop(true);
 		}
+		stopMapComponent();
 		super.onDestroy();
 	}
 
@@ -319,6 +320,10 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		GpsServiceManager.registerBorcastReceiver(this, mLocationReceiver);
 		mLayout.setVisibility(View.VISIBLE);
 		mLayout.addView(mBdMapView);
+	}
+	
+	void stopMapComponent(){
+		GpsServiceManager.unregisterBorcastReceiver(this, mLocationReceiver);
 	}
 
 }

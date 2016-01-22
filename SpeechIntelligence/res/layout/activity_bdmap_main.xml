@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/mapLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/bmapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        android:alpha="80"
+        android:background="@color/white"
+        android:visibility="visible" >
+        
+        <Button
+            android:id="@+id/option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:layout_marginLeft="5dp"
+            android:padding="5dp"
+            android:textColor="#FF000000"
+            android:background="@drawable/icon_cruiser"/>
+
+        <EditText
+            android:id="@+id/current_mark"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"  
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"  
+            android:paddingLeft="10dp"        
+            android:background="@color/white"
+            android:hint="请输入需要搜索的信息"
+            android:textColor="@color/black"
+            android:layout_weight="0.7"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="搜索"
+            android:textSize="18sp"
+            android:layout_weight="0.2"
+            android:textColor="#FF000000"
+            android:background="@color/white" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/op_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="20dp" >
+        
+        <Button
+            android:id="@+id/walk_nav"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/icon_route_sectional_walk"
+            android:textColor="#FF000000"
+            android:visibility="gone" />
+        
+        <Button
+            android:id="@+id/bike_nav"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/walk_nav"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/icon_route_bike_blue"
+            android:textColor="#FF000000"
+            android:visibility="gone" />
+        
+        <Button
+            android:id="@+id/car_nav"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/bike_nav"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/icon_route_car_blue"
+            android:textColor="#FF000000"
+            android:visibility="gone" />
+        
+        <Button
+            android:id="@+id/bus_nav"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/car_nav"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/icon_route_bus_blue"
+            android:textColor="#FF000000" 
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/locate"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/bus_nav"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/img_dingwei"
+            android:textColor="#FF000000" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/nav_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp" >
+        
+        <Button
+            android:id="@+id/nav_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/map_nav_selecter"
+            android:textColor="#FF000000"
+            android:visibility="visible" />
+        <TextView 
+            android:id="@+id/speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/nav_button"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="0 km/h"
+            />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/ex_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_layout"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp" >
+        
+        <Button
+            android:id="@+id/road_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/roadcondition_selector"
+            android:textColor="#FF000000"
+            android:visibility="visible" />
+        <Button
+            android:id="@+id/ex_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/road_button"
+            android:background="@drawable/map_2d_3d_exchange_selector"
+            android:textColor="#FF000000"
+            android:visibility="visible" />        
+        
+    </RelativeLayout>
+
+</RelativeLayout>

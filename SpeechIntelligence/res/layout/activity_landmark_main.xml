@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+ 	<com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true" />
+ 	
+ 	<TextView 
+ 	    android:id="@+id/current_mark"
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="wrap_content"
+ 	    android:layout_marginLeft="30dp"
+ 	    android:layout_alignParentRight="true"
+ 	    android:layout_marginRight="30dp"
+ 	    android:layout_marginTop="10dp"
+ 	    android:padding="10dp"
+ 	    android:text="当前地标:"
+ 	    android:textSize="18sp"
+ 	    android:background="@color/white"
+ 	    />
+
+    <Button
+        android:id="@+id/locate"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/img_dingwei"
+        android:textColor="#FF000000" />
+    
+     <LinearLayout
+        android:id="@+id/op_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
+        <Button 
+            android:id="@+id/mark_create"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="新增地标"
+            android:textSize="22sp"/>
+        <Button 
+            android:id="@+id/mark_modify"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="更新地标"
+            android:textSize="22sp"/>
+    </LinearLayout>
+
+</RelativeLayout>

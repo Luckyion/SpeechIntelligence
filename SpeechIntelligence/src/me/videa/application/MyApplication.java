@@ -5,6 +5,7 @@ import me.videa.voice.R;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.NetworkInfo;
 import android.util.DisplayMetrics;
 
 import com.baidu.mapapi.SDKInitializer;
@@ -21,6 +22,9 @@ public class MyApplication extends Application {
 	private static boolean m_bKeyRight = true;
 
 	static Context mContext;
+	
+	/****************************************/
+	public static int mNetworkInfo; 
 
 	public MyApplication() {
 		// TODO Auto-generated constructor stub
