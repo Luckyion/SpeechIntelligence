@@ -15,6 +15,7 @@ public interface HandlerWhat {
 	public static int RECOGNITION_VOLUME_STATE = 73;
 	public static int RECOGNITION_STATE_INIT = 71;
 	public static int RECOGNITION_RESULT_STATE = 72;
+	public static int NFC_STATUS = 8;
 	
 	
 	public static int TEST = 99;

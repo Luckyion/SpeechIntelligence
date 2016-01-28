@@ -254,16 +254,17 @@ public final class R {
         public static final int wsdk_drawable_rg_ic_north2d=0x7f0200ac;
     }
     public static final class id {
-        public static final int RelativeLayout1=0x7f0c0024;
+        public static final int RelativeLayout1=0x7f0c0025;
         public static final int async_loading=0x7f0c0000;
         public static final int bike_nav=0x7f0c000b;
         public static final int bmapView=0x7f0c0004;
         public static final int bus_nav=0x7f0c000d;
-        public static final int cancel=0x7f0c0027;
+        public static final int cancel=0x7f0c0028;
         public static final int car_nav=0x7f0c000c;
-        public static final int content=0x7f0c0026;
+        public static final int content=0x7f0c0027;
         public static final int conversation=0x7f0c0022;
         public static final int conversation_content=0x7f0c0015;
+        public static final int cur_password=0x7f0c0035;
         public static final int current_content=0x7f0c001f;
         public static final int current_mark=0x7f0c0007;
         public static final int current_path=0x7f0c001d;
@@ -276,42 +277,49 @@ public final class R {
         public static final int file_name=0x7f0c0020;
         public static final int file_path=0x7f0c0018;
         public static final int file_size=0x7f0c0019;
-        public static final int iatRadioCloud=0x7f0c0036;
-        public static final int iatRadioLocal=0x7f0c0037;
-        public static final int iatRadioMix=0x7f0c0038;
-        public static final int iat_recognize=0x7f0c0039;
-        public static final int iat_service=0x7f0c003b;
-        public static final int iat_stop=0x7f0c003a;
-        public static final int iat_text=0x7f0c0034;
-        public static final int image_tts_set=0x7f0c0029;
+        public static final int iatRadioCloud=0x7f0c003e;
+        public static final int iatRadioLocal=0x7f0c003f;
+        public static final int iatRadioMix=0x7f0c0040;
+        public static final int iat_recognize=0x7f0c0041;
+        public static final int iat_service=0x7f0c0043;
+        public static final int iat_stop=0x7f0c0042;
+        public static final int iat_text=0x7f0c003c;
+        public static final int image_tts_set=0x7f0c002a;
         public static final int loading=0x7f0c0001;
         public static final int loading_text=0x7f0c0002;
         public static final int locate=0x7f0c000e;
         public static final int mainView=0x7f0c0021;
-        public static final int main_title=0x7f0c0033;
+        public static final int main_title=0x7f0c003b;
         public static final int mapLayout=0x7f0c0003;
         public static final int mark_create=0x7f0c001b;
         public static final int mark_modify=0x7f0c001c;
         public static final int nav_button=0x7f0c0010;
         public static final int nav_layout=0x7f0c000f;
-        public static final int ok=0x7f0c0028;
+        public static final int nfc_pwd_crack=0x7f0c0038;
+        public static final int nfc_pwd_role=0x7f0c0037;
+        public static final int nfc_read=0x7f0c0039;
+        public static final int nfc_result=0x7f0c0036;
+        public static final int nfc_status=0x7f0c0034;
+        public static final int nfc_write=0x7f0c003a;
+        public static final int ok=0x7f0c0029;
         public static final int op_layout=0x7f0c0009;
         public static final int option=0x7f0c0006;
-        public static final int radioGroup=0x7f0c0035;
+        public static final int radioGroup=0x7f0c003d;
         public static final int road_button=0x7f0c0013;
         public static final int search=0x7f0c0008;
         public static final int search_layout=0x7f0c0005;
         public static final int speed=0x7f0c0011;
-        public static final int title=0x7f0c0025;
-        public static final int tts_btn_person_select=0x7f0c002e;
-        public static final int tts_cancel=0x7f0c0030;
-        public static final int tts_pause=0x7f0c0031;
-        public static final int tts_play=0x7f0c002f;
-        public static final int tts_radioCloud=0x7f0c002c;
-        public static final int tts_radioLocal=0x7f0c002d;
-        public static final int tts_rediogroup=0x7f0c002b;
-        public static final int tts_resume=0x7f0c0032;
-        public static final int tts_text=0x7f0c002a;
+        public static final int text=0x7f0c0024;
+        public static final int title=0x7f0c0026;
+        public static final int tts_btn_person_select=0x7f0c002f;
+        public static final int tts_cancel=0x7f0c0031;
+        public static final int tts_pause=0x7f0c0032;
+        public static final int tts_play=0x7f0c0030;
+        public static final int tts_radioCloud=0x7f0c002d;
+        public static final int tts_radioLocal=0x7f0c002e;
+        public static final int tts_rediogroup=0x7f0c002c;
+        public static final int tts_resume=0x7f0c0033;
+        public static final int tts_text=0x7f0c002b;
         public static final int viewContainer=0x7f0c0023;
         public static final int walk_nav=0x7f0c000a;
     }
@@ -326,9 +334,11 @@ public final class R {
         public static final int activity_remote_file_show_content=0x7f030007;
         public static final int activity_screen_lock=0x7f030008;
         public static final int activity_voice_main=0x7f030009;
-        public static final int superman_alertdialog=0x7f03000a;
-        public static final int ttsdemo=0x7f03000b;
-        public static final int voice_main_activity=0x7f03000c;
+        public static final int foreground_dispatch=0x7f03000a;
+        public static final int superman_alertdialog=0x7f03000b;
+        public static final int ttsdemo=0x7f03000c;
+        public static final int view_nfc_main=0x7f03000d;
+        public static final int voice_main_activity=0x7f03000e;
     }
     public static final class raw {
         public static final int androidpn=0x7f060000;
@@ -390,9 +400,10 @@ public final class R {
         public static final int dialog=0x7f0b0000;
     }
     public static final class xml {
-        public static final int iat_setting=0x7f050000;
-        public static final int ise_settings=0x7f050001;
-        public static final int tts_setting=0x7f050002;
-        public static final int understand_setting=0x7f050003;
+        public static final int filter_nfc=0x7f050000;
+        public static final int iat_setting=0x7f050001;
+        public static final int ise_settings=0x7f050002;
+        public static final int tts_setting=0x7f050003;
+        public static final int understand_setting=0x7f050004;
     }
 }

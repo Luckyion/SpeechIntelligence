@@ -5,7 +5,7 @@
     android:versionName="0.0.0001" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -39,8 +39,8 @@
     <!--允许应用读取低级别的系统日志文件 -->  
     <uses-permission android:name="android.permission.READ_LOGS"></uses-permission> 
     
-    
-    
+    <!-- NFC -->
+    <uses-feature android:name="android.hardware.nfc" android:required="true" />
 	<!-- android:name="me.videa.voice.show.VoiceMainActivity" -->
     <application
         android:name="me.videa.application.MyApplication"
@@ -66,6 +66,36 @@
         </activity>
         
         <activity android:name="me.videa.show.RemoteFileShow" >
+        </activity>
+        
+        <activity android:name="me.videa.functions.nfc.ForegroundDispatch" android:label="NFC/ForegroundDispatch">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="me.videa.functions.nfc.TechFilter" android:label="NFC/TechFilter">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+
+            <!-- Add a technology filter -->
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+            </intent-filter>
+
+            <meta-data android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/filter_nfc"
+            />
+        </activity>
+
+        <activity android:name="me.videa.functions.nfc.ForegroundNdefPush" android:label="NFC/ForegroundNdefPush">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
         </activity>
 
         <service
