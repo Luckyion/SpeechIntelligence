@@ -13,6 +13,7 @@ import me.videa.functions.local.SelectorResult;
 import me.videa.functions.map.BDMapView;
 import me.videa.functions.map.GpsServiceManager;
 import me.videa.functions.map.LocationReceiver;
+import me.videa.functions.nfc.NfcView;
 import me.videa.functions.novelloader.LoaderEngine;
 import me.videa.functions.novelloader.NovelShow;
 import me.videa.utils.TimeUtils;
@@ -23,9 +24,13 @@ import me.videa.voice.show.beans.ExtraBean;
 import me.videa.voice.show.beans.TimeBean;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.IntentFilter.MalformedMimeTypeException;
+import android.nfc.NfcAdapter;
+import android.nfc.tech.NfcF;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -67,8 +72,8 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	private List<String> mConversations;
 	private FileExplore mExplore;
 	private NovelShow mNovelShow;
-	
-	/****************地图****************/
+
+	/**************** 地图 ****************/
 	private BDMapView mBdMapView;
 	private LocationReceiver mLocationReceiver;
 
@@ -79,7 +84,9 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	private TTSManager mTtsManager;
 	private RecognitionManager mRecognitionManager;
 
-	/******************************************/
+	/*****************NFC*************************/
+
+	
 	private Toast mToast;
 
 	@SuppressLint("ShowToast")
@@ -102,10 +109,10 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		mAdapter = new ConversationAdapter(this, mConversations);
 		mConversationView.setAdapter(mAdapter);
 		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
-		
+
 		/**************************/
-//		Intent mIntent  = new Intent(this, LandmarkActivity.class);
-//		startActivity(mIntent);
+		// Intent mIntent = new Intent(this, LandmarkActivity.class);
+		// startActivity(mIntent);
 		startMapComponent();
 	}
 
@@ -121,7 +128,7 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 				mNovelShow.setVisibility(View.GONE);
 			}
 		});
-		
+
 		// BaseActionAnalysis mActionAnalysis = new BaseActionAnalysis(this);
 		// mActionAnalysis.AnalyseAction("发短信给测试");
 		/*
@@ -312,17 +319,17 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		Intent mService = new Intent(this, SpeechIntelligence.class);
 		startService(mService);
 	}
-	
-	void startMapComponent(){
-		mBdMapView = new BDMapView(this);		
+
+	void startMapComponent() {
+		mBdMapView = new BDMapView(this);
 		mLocationReceiver = new LocationReceiver(mBdMapView);
 		GpsServiceManager.startGpsService(this);
 		GpsServiceManager.registerBorcastReceiver(this, mLocationReceiver);
 		mLayout.setVisibility(View.VISIBLE);
 		mLayout.addView(mBdMapView);
 	}
-	
-	void stopMapComponent(){
+
+	void stopMapComponent() {
 		GpsServiceManager.unregisterBorcastReceiver(this, mLocationReceiver);
 	}
 
