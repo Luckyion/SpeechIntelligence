@@ -1,8 +1,6 @@
 package me.videa.utils;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 /**
  * 调试工具类 android.util.Log常用的方法有以下5个：Log.v() ,Log.d() ,Log.i() ,Log.w() ,Log.e()

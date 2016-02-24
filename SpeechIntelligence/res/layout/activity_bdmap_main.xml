@@ -39,7 +39,7 @@
             android:background="@drawable/icon_cruiser"/>
 
         <EditText
-            android:id="@+id/current_mark"
+            android:id="@+id/searchContent"
             android:layout_width="0dp"
             android:layout_height="match_parent"  
             android:paddingTop="10dp"

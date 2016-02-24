@@ -14,5 +14,12 @@
 	<classpathentry kind="lib" path="libs/zxing.jar"/>
 	<classpathentry kind="lib" path="libs/asmack.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry kind="lib" path="libs/baidumapapi_base_v3_6_1.jar"/>
+	<classpathentry kind="lib" path="libs/baidumapapi_cloud_v3_6_1.jar"/>
+	<classpathentry kind="lib" path="libs/baidumapapi_map_v3_6_1.jar"/>
+	<classpathentry kind="lib" path="libs/baidumapapi_radar_v3_6_1.jar"/>
+	<classpathentry kind="lib" path="libs/baidumapapi_search_v3_6_1.jar"/>
+	<classpathentry kind="lib" path="libs/baidumapapi_util_v3_6_1.jar"/>
+	<classpathentry kind="lib" path="libs/locSDK_6.13.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

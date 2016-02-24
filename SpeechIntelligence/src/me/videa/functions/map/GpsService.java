@@ -1,6 +1,9 @@
 package me.videa.functions.map;
 
+import java.sql.Time;
+
 import me.videa.utils.LogUtil;
+import me.videa.utils.TimeUtils;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -14,6 +17,10 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 
 public class GpsService extends Service implements BDLocationListener {
+	
+	
+	
+	private final String TAG = "GpsService";
 
 	// 定位相关
 	LocationClient mLocClient;	
@@ -84,12 +91,14 @@ public class GpsService extends Service implements BDLocationListener {
 		// TODO Auto-generated method stub	
 		if (location == null) {
 			return;
-		}		
+		}
+		/*
 		if (location.getLatitude() == (4.9E-324)) {
 			Toast.makeText(this, "未定位到准确位置", Toast.LENGTH_SHORT).show();
+			LogUtil.i(TAG, "当前位置: " + new Time(System.currentTimeMillis()) + "未准确定位");
 			return;
-		}		
-		LogUtil.i("glxs_location", "Location: lon=" + location.getLongitude() + " lat="+ location.getLatitude());
+		}		*/
+		LogUtil.i(TAG, "当前位置: " + new Time(System.currentTimeMillis()) + " lon=" + location.getLongitude() + " lat="+ location.getLatitude());
 		Intent intent = new Intent(GPS_MSG);
 		intent.putExtra("location", location);
 		sendBroadcast(intent);

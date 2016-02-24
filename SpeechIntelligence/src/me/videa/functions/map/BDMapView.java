@@ -1,18 +1,34 @@
 package me.videa.functions.map;
 
+import java.util.List;
+
+import me.videa.application.MyApplication;
 import me.videa.utils.DebugUtil;
+import me.videa.utils.LogUtil;
 import me.videa.utils.SharePreferenceHelper;
 import me.videa.voice.R;
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
+import com.baidu.location.b.l;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BaiduMap.OnMapStatusChangeListener;
 import com.baidu.mapapi.map.BaiduMap.OnMarkerDragListener;
@@ -30,13 +46,23 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.offline.MKOfflineMap;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.model.LatLngBounds;
 import com.baidu.mapapi.model.inner.GeoPoint;
+import com.baidu.mapapi.navi.BaiduMapNavigation;
+import com.baidu.mapapi.navi.NaviParaOption;
+import com.baidu.mapapi.search.core.PoiInfo;
+import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
+import com.baidu.mapapi.search.poi.PoiBoundSearchOption;
+import com.baidu.mapapi.search.poi.PoiDetailResult;
+import com.baidu.mapapi.search.poi.PoiResult;
+import com.baidu.mapapi.search.poi.PoiSearch;
 
 public class BDMapView extends RelativeLayout implements MapViewLitener,
-		OnClickListener {
+		OnClickListener, OnGetPoiSearchResultListener {
 
 	private final static String TAG = "BDMapView";
 
+	private Context mContext;
 	private LayoutInflater mInflater;
 	private RelativeLayout mLayout;
 	private MapView mMapView;
@@ -51,7 +77,16 @@ public class BDMapView extends RelativeLayout implements MapViewLitener,
 	private Button mRoadCondition;
 	private Button m2Or3DButton;
 	private Marker marker;
-
+	
+	private Button mSerach;
+	private EditText mEditText;
+	private Button mNavigation;
+	
+	private PoiSearch mPoiSearch;
+	private PopupWindow popupWindow;
+	private ResultAdapter popAdapter;
+	
+	public boolean isNav = false;
 	/**
 	 * 方向信息
 	 */
@@ -112,16 +147,25 @@ public class BDMapView extends RelativeLayout implements MapViewLitener,
 	public BDMapView(Context context) {
 		super(context);
 		// 获取地图控件引用
+		mContext = context;
 		mInflater = LayoutInflater.from(context);
 		mLayout = (RelativeLayout) mInflater.inflate(
 				R.layout.activity_bdmap_main, null);
 		mMapView = (MapView) mLayout.findViewById(R.id.bmapView);
+		mSerach = (Button) mLayout.findViewById(R.id.search);
+		mSerach.setOnClickListener(this);
+		mEditText = (EditText) mLayout.findViewById(R.id.searchContent);
 		mLocate = (Button) mLayout.findViewById(R.id.locate);
 		mLocate.setOnClickListener(this);
 		mRoadCondition = (Button) mLayout.findViewById(R.id.road_button);
 		mRoadCondition.setOnClickListener(this);
 		m2Or3DButton = (Button) mLayout.findViewById(R.id.ex_button);
 		m2Or3DButton.setOnClickListener(this);
+		mNavigation = (Button) mLayout.findViewById(R.id.nav_button);
+		mNavigation.setOnClickListener(this);
+		/**初始化搜索引擎*/
+		mPoiSearch = PoiSearch.newInstance();					
+		mPoiSearch.setOnGetPoiSearchResultListener(this);
 		mBaiduMap = mMapView.getMap();
 		mBaiduMap.setOnMapStatusChangeListener(new OnMapStatusChangeListener() {
 			
@@ -164,7 +208,6 @@ public class BDMapView extends RelativeLayout implements MapViewLitener,
 		initConfig(context); // 初始化配置
 		updateMyLocationConfig();
 		initOrientationListener(context);
-		initOfflineMapListener();
 		this.addView(mLayout);
 	}
 
@@ -195,11 +238,6 @@ public class BDMapView extends RelativeLayout implements MapViewLitener,
 				});
 		myOrientationListener.start();
 	}
-	
-	void initOfflineMapListener(){
-		OfflineMapManager mOfflineMapManager = new OfflineMapManager();
-		mMKOfflineMap = mOfflineMapManager.initOfflineMap(mMapView);
-	}
 
 	void updateMyLocation() {		
 		if(mCurModel == 2){
@@ -225,64 +263,6 @@ public class BDMapView extends RelativeLayout implements MapViewLitener,
 		MyLocationConfiguration mConfiguration = new MyLocationConfiguration(
 				mLocationMode, true, null);
 		mBaiduMap.setMyLocationConfigeration(mConfiguration);
-	}
-
-	@Override
-	public void onCreateOptionsMenu(Menu menu) {
-		menu.add(1, 1, 1, "普通地图");
-		menu.add(1, 2, 2, "卫星地图");
-		menu.add(1, 3, 3, "开启交通图");
-		menu.add(1, 4, 4, "开启城市热力图");
-		menu.add(1, 5, 5, "标注");
-	}
-
-	@Override
-	public void onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case 1:
-			// 普通地图
-			mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
-			break;
-		case 2:
-			// 普通地图
-			mBaiduMap.setMapType(BaiduMap.MAP_TYPE_SATELLITE);
-			break;
-		case 3:
-			if (item.getTitle().toString().equals("开启交通图")) {
-				// 开启交通图
-				mBaiduMap.setTrafficEnabled(true);
-				item.setTitle("关闭交通图");
-			} else {
-				mBaiduMap.setTrafficEnabled(false);
-				item.setTitle("开启交通图");
-			}
-			break;
-		case 4:
-			if (item.getTitle().toString().equals("开启城市热力图")) {
-				mBaiduMap.setBaiduHeatMapEnabled(true);
-				item.setTitle("关闭城市热力图");
-			} else {
-				mBaiduMap.setBaiduHeatMapEnabled(false);
-				item.setTitle("开启城市热力图");
-			}
-			break;
-		case 5:
-			if (item.getTitle().toString().equals("标注")) {
-				LatLng point = new LatLng(39.963175, 116.400244);
-				// 构建Marker图标
-				BitmapDescriptor bitmap = BitmapDescriptorFactory
-						.fromResource(R.drawable.icon_marka);
-				// 构建MarkerOption，用于在地图上添加Marker
-				OverlayOptions option = new MarkerOptions().position(point)
-						.icon(bitmap).draggable(true);
-				// 在地图上添加Marker，并显示
-				marker = (Marker) (mBaiduMap.addOverlay(option));
-				item.setTitle("清除");
-			} else {
-				marker.remove();// 清除具体某个标注。
-				item.setTitle("标注");
-			}
-		}
 	}
 
 	/**
@@ -386,6 +366,19 @@ public class BDMapView extends RelativeLayout implements MapViewLitener,
 				is3D = true;
 				break;
 			}
+		case R.id.search:
+			String mSear = mEditText.getText().toString();
+			if(mSear == null || mSear.equals("")){
+				return;
+			}			
+			PoiBoundSearchOption mBoundSearchOption = new PoiBoundSearchOption();
+			LatLngBounds mBounds = new LatLngBounds.Builder().include(mLatLng).build();
+			mBoundSearchOption.keyword(mSear);
+			mBoundSearchOption.bound(mBounds);	
+			mPoiSearch.searchInBound(mBoundSearchOption);
+			break;
+		case R.id.nav_button:
+			break;
 		default:
 			break;
 		}
@@ -400,6 +393,141 @@ public class BDMapView extends RelativeLayout implements MapViewLitener,
 
 	public void setmType(MAP_TYPE mType) {
 		this.mType = mType;
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onGetPoiDetailResult(PoiDetailResult arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/**
+	 * 导航
+	 * @param mInfo
+	 */
+	void navigate(PoiInfo mInfo){
+		NaviParaOption mNaviParaOption = new NaviParaOption();
+		mNaviParaOption.startPoint(mLatLng);
+		mNaviParaOption.endPoint(mInfo.location);
+		BaiduMapNavigation.setSupportWebNavi(true);
+		double distance = distance(mLongitude, mLatitude, mInfo.location.longitude, mInfo.location.latitude);
+		if(distance > 3){
+			Toast.makeText(mContext, "距离太远啦，自动给您打开自行车导航", Toast.LENGTH_LONG).show();
+			BaiduMapNavigation.openBaiduMapBikeNavi(mNaviParaOption, mContext);
+		}else{
+			BaiduMapNavigation.openBaiduMapWalkNavi(mNaviParaOption, mContext);
+		}		
+		isNav = true;
+	}
+	
+
+	/**
+	 * 根据两个位置的经纬度，来计算两地的距离（单位为KM） 参数为String类型
+	 * 
+	 * @param lat1
+	 *            用户经度
+	 * @param lng1
+	 *            用户纬度
+	 * @param lat2
+	 *            商家经度
+	 * @param lng2
+	 *            商家纬度
+	 * @return
+	 */
+	public static double distance(double long1, double lat1, double long2, double lat2) {
+		double a, b, R;
+		R = 6378137; // 地球半径
+		lat1 = lat1 * Math.PI / 180.0;
+		lat2 = lat2 * Math.PI / 180.0;
+		a = lat1 - lat2;
+		b = (long1 - long2) * Math.PI / 180.0;
+		double d;
+		double sa2, sb2;
+		sa2 = Math.sin(a / 2.0);
+		sb2 = Math.sin(b / 2.0);
+		d = 2 * R * Math.asin(Math.sqrt(sa2 * sa2 + Math.cos(lat1) * Math.cos(lat2) * sb2 * sb2));
+		return d;
+	}
+
+	public boolean onBackPressed(){
+		if(isNav){
+			BaiduMapNavigation.finish(mContext);
+			return false;
+		}
+		return true;
+	}
+	
+	@Override
+	public void onGetPoiResult(PoiResult res) {
+		// TODO Auto-generated method stub
+		List<PoiInfo> list = res.getAllPoi();
+		if(list == null || list.size() == 0){
+			Toast.makeText(mContext, "没有搜到数据", Toast.LENGTH_LONG).show();
+			return;
+		}
+		showPopWindow(list);
+		for(PoiInfo mInfo : list){
+			LogUtil.d(TAG, mInfo.address);
+		}
+	}
+	
+	/**
+	 * 显示Popwindow
+	 */
+	private void showPopWindow(List<PoiInfo> params) {
+		if (popupWindow != null && popupWindow.isShowing()) {
+			return;
+		}
+		initPop(params);
+		popAdapter.notifyDataSetChanged();
+		popupWindow.showAtLocation(mSerach, Gravity.CENTER_VERTICAL
+				| Gravity.CENTER_HORIZONTAL, 0, 0);
+	}
+
+	private void initPop(final List<PoiInfo> params) {
+		View popupWindow_view = mInflater.inflate(
+				R.layout.activity_dialog_list, null);
+//		 创建PopupWindow实例,200,LayoutParams.MATCH_PARENT分别是宽度和高度
+		popupWindow = new PopupWindow(popupWindow_view, MyApplication.mScreenWidth - 180,
+				MyApplication.mScreenHeight / 2, true);
+		// 点击其他地方消失
+		popupWindow.setBackgroundDrawable(new BitmapDrawable());
+		popupWindow.setFocusable(true);
+		popupWindow.setOutsideTouchable(true);
+		ListView mList = (ListView) popupWindow_view
+				.findViewById(R.id.dialog_list);
+		popAdapter = new ResultAdapter(mContext, params);
+		mList.setAdapter(popAdapter);
+		mList.setCacheColorHint(0);
+		mList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				dismissPop();
+				navigate(params.get(position));
+			}
+		});
+	}
+
+	private void dismissPop() {
+		if (popupWindow != null && popupWindow.isShowing()) {
+			popupWindow.dismiss();
+			popupWindow = null;
+		}
 	}
 
 }

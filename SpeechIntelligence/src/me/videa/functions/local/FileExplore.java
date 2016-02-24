@@ -198,12 +198,12 @@ public class FileExplore extends LinearLayout implements OnItemClickListener{
 	/**
 	 * 按下Back键的动作
 	 */
-	public void onBackPressed() {
+	public boolean onBackPressed() {
 		if(isLoading)
 			isPause = true;
 		if(mPath.equals(mRoot)){
 			setResult(mPath);
-			return;
+			return false;
 		}
 		mPath = mPath.substring(0, mPath.lastIndexOf("/"));
 //		mFiles.clear();
@@ -211,6 +211,7 @@ public class FileExplore extends LinearLayout implements OnItemClickListener{
 		mFiles.clear();
 		mFiles.addAll(mBeans);
 		mAdapter.notifyDataSetChanged();
+		return true;
 	}
 	
 

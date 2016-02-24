@@ -13,9 +13,10 @@ import me.videa.functions.local.SelectorResult;
 import me.videa.functions.map.BDMapView;
 import me.videa.functions.map.GpsServiceManager;
 import me.videa.functions.map.LocationReceiver;
-import me.videa.functions.nfc.NfcView;
 import me.videa.functions.novelloader.LoaderEngine;
 import me.videa.functions.novelloader.NovelShow;
+import me.videa.functions.web.MyWebView;
+import me.videa.functions.web.RequestOptions;
 import me.videa.utils.TimeUtils;
 import me.videa.voice.R;
 import me.videa.voice.service.SpeechIntelligence;
@@ -24,13 +25,9 @@ import me.videa.voice.show.beans.ExtraBean;
 import me.videa.voice.show.beans.TimeBean;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.IntentFilter.MalformedMimeTypeException;
-import android.nfc.NfcAdapter;
-import android.nfc.tech.NfcF;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -85,6 +82,9 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 	private RecognitionManager mRecognitionManager;
 
 	/*****************NFC*************************/
+	
+	/*****************WebView*********************/
+	private MyWebView myWebView;
 
 	
 	private Toast mToast;
@@ -113,7 +113,8 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		/**************************/
 		// Intent mIntent = new Intent(this, LandmarkActivity.class);
 		// startActivity(mIntent);
-		startMapComponent();
+//		startMapComponent();
+		startWebView();
 	}
 
 	private void initViews() {
@@ -154,13 +155,23 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		if (mEngine != null) {
 			LoaderEngine.get().setStop(true);
 		}
-		stopMapComponent();
+		if(mBdMapView != null){
+			stopMapComponent();
+		}		
 		super.onDestroy();
 	}
 
 	@Override
 	public void onBackPressed() {
-		// mExplore.onBackPressed();
+		if(mExplore != null && !mExplore.onBackPressed()){
+			return;
+		}
+		if(mBdMapView != null && !mBdMapView.onBackPressed()){
+			return;
+		}
+		if(myWebView != null && !myWebView.onBackPressed()){
+			return;
+		}
 		super.onBackPressed();
 	}
 
@@ -327,6 +338,16 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		GpsServiceManager.registerBorcastReceiver(this, mLocationReceiver);
 		mLayout.setVisibility(View.VISIBLE);
 		mLayout.addView(mBdMapView);
+	}
+	
+	void startWebView(){
+		myWebView = new MyWebView(this);
+		mLayout.setVisibility(View.VISIBLE);
+		mLayout.addView(myWebView);
+		RequestOptions mOptions = new RequestOptions();
+		String mUrl = "http://baidu.com";
+		mOptions.setmUrl(mUrl);
+		myWebView.loadPager(mOptions);
 	}
 
 	void stopMapComponent() {
