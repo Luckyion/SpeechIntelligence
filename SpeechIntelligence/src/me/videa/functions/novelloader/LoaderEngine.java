@@ -120,7 +120,7 @@ public class LoaderEngine extends Thread{
 		Bundle mBundle = new Bundle();
 		mBundle.putString("data", novel);
 		message.setData(mBundle);
-		message.what = HandlerWhat.CONVERSATION_VICKIE;
+		message.what = HandlerWhat.CONVERSATION_JARVIS;
 		mHandler.sendMessage(message);
 	}
 	

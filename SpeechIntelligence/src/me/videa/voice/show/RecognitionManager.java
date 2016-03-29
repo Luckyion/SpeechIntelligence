@@ -47,6 +47,9 @@ public class RecognitionManager implements RecognitionListener{
 	 */
 	public void start(){
 		sleep(200);
+		if(VoiceControl.isJarvisSpeaking){
+			return;
+		}
 		mRecognition.start();
 	}
 	/**
@@ -54,6 +57,7 @@ public class RecognitionManager implements RecognitionListener{
 	 */
 	public void cancel(){
 		mRecognition.cancel();
+		VoiceControl.isJarvisSpeaking = true;
 	}
 	/**
 	 * 停止听

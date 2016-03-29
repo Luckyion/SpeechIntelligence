@@ -29,7 +29,7 @@ public class BaseActionAnalysis {
 				System.out.println(field.getName());
 				Object object = ReflectUtil.getStaticProperty(clazz.getName(), field.getName());
 				if(actionStr.equals((String)object)){
-					doAction(actionStr, obj);
+					execAction(actionStr, obj);
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -43,16 +43,8 @@ public class BaseActionAnalysis {
 	 * @param action
 	 * @param obj
 	 */
-	private void doAction(String action, String obj){
-		if(action.equals(BaseDo.ACTION_1)){
-			new MakeCall(mContext).makeCall(new Contacts(mContext).searchContactNumberByName(obj));
-		}
-		if(action.equals(BaseDo.ACTION_2)){
-			new SendMessage(mContext).sendMessage(new Contacts(mContext).searchContactNumberByName(obj), "CXLL");
-		}
-		if(action.equals(BaseDo.ACTION_3)){
-//			new RecAnswerPhone().recAnswerPhone(type);
-		}
+	private void execAction(String action, String obj){
+		
 	}
 	
 	

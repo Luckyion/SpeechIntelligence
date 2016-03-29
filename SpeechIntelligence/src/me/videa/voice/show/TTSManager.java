@@ -165,6 +165,7 @@ public class TTSManager implements TTSLinstener{
 		Intent intent = new Intent();
 		intent.setAction("me.videa.ready");
 		mContext.sendBroadcast(intent);
+		mHandler.sendEmptyMessage(HandlerWhat.TTS_STATE_STOP);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import me.videa.base.actions.BaseAction;
 import me.videa.base.functions.BatteryReceiver;
 import me.videa.base.functions.DateTimeReceiver;
 import me.videa.effects.MainShowView;
@@ -15,6 +16,7 @@ import me.videa.functions.map.GpsServiceManager;
 import me.videa.functions.map.LocationReceiver;
 import me.videa.functions.novelloader.LoaderEngine;
 import me.videa.functions.novelloader.NovelShow;
+import me.videa.functions.weather.WeatherData;
 import me.videa.functions.web.MyWebView;
 import me.videa.functions.web.RequestOptions;
 import me.videa.utils.TimeUtils;
@@ -103,18 +105,18 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 		registerDateTimeReceiver();
 		iniDateAndTime();
 		mTtsManager = TTSManager.initManager(this, mHandler, mVoiceView);
-		// mRecognitionManager = new RecognitionManager(this, mHandler,
-		// mVoiceView);//启动语音识别
+		mRecognitionManager = new RecognitionManager(this, mHandler,
+		mVoiceView);//启动语音识别
 		mConversations = new ArrayList<String>();
 		mAdapter = new ConversationAdapter(this, mConversations);
 		mConversationView.setAdapter(mAdapter);
 		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
-
+		BaseAction.get(mContext).noticeWeather();
 		/**************************/
 		// Intent mIntent = new Intent(this, LandmarkActivity.class);
 		// startActivity(mIntent);
 //		startMapComponent();
-		startWebView();
+//		startWebView();
 	}
 
 	private void initViews() {
@@ -214,12 +216,20 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 				mAdapter.notifyDataSetChanged();
 				mConversationView.setSelection(mAdapter.getCount());
 				break;
-			case CONVERSATION_VICKIE:
+			case CONVERSATION_JARVIS:
 				bundle = msg.getData();
-				mConversations.add("Vickie : " + bundle.getString("data"));
-				mTtsManager.start(bundle.getString("data"));
-				mAdapter.notifyDataSetChanged();
-				mConversationView.setSelection(mAdapter.getCount());
+				addJarvisConversation(bundle.getString("data"));				
+				break;
+			case WEATHER:
+				bundle = msg.getData();
+				WeatherData mData = (WeatherData)bundle.getSerializable("weather");
+				if(mData == null){
+					return;
+				}
+				addJarvisConversation( "现在温度" + mData.getTemp() + "。 湿度" + mData.getSD());
+				ExtraBean mBean = new ExtraBean();
+				mBean.setWeatherData(mData);
+				mVoiceView.reDraw(WEATHER, mBean);
 				break;
 
 			default:
@@ -227,6 +237,18 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 			}
 			super.dispatchMessage(msg);
 		}
+	}
+	
+	/**
+	 * Jarvis开始说话
+	 * @param msg
+	 */
+	void addJarvisConversation(String msg){
+		mRecognitionManager.cancel();
+		mConversations.add("Jarvis : " + msg);
+		mTtsManager.start(msg);
+		mAdapter.notifyDataSetChanged();
+		mConversationView.setSelection(mAdapter.getCount());
 	}
 
 	private void testTimer() {
@@ -242,7 +264,7 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 				mBundle.putString("data", counter + "");
 				msg.setData(mBundle);
 				if (counter % 2 == 0) {
-					msg.what = HandlerWhat.CONVERSATION_VICKIE;
+					msg.what = HandlerWhat.CONVERSATION_JARVIS;
 				} else {
 					msg.what = HandlerWhat.CONVERSATION_HOST;
 				}
@@ -352,6 +374,6 @@ public class VoiceMainActivity extends Activity implements HandlerWhat {
 
 	void stopMapComponent() {
 		GpsServiceManager.unregisterBorcastReceiver(this, mLocationReceiver);
-	}
+	}	
 
 }

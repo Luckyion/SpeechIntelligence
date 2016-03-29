@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<function>
+	<voice name="打电话|make call">
+		<action name="makeCall">
+		</action>
+	</voice>
+	<voice name="发短信|send message">
+		<action name="sendMessage">
+		</action>
+	</voice>
+	<voice name="朗读短信">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="挂断|不接|取消|">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="静音|安静">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="打开地图|导航|搜索位置">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="朗读小说|听小说|打开小说">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="搜索|搜索文件|找文件">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="发文件|发">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="连接">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="上传|上载">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="下载">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="保存">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="删除">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="跳转">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="天气">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="温度|气温">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="日期|今天几号">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="时间|现在几点了">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="今天星期几">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="电量">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="音量">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="网络">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="朗读小说|听小说|打开小说|">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="打开应用|启动应用">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="打开电话录音">
+		<action name="">
+		</action>
+	</voice>
+	<voice name="关闭电话录音">
+		<action name="">
+		</action>
+	</voice>
+</function>

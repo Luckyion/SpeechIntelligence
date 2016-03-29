@@ -387,6 +387,9 @@ public class MainShowView extends CircleView {
 		case HandlerWhat.TTS_STATE:
 			mMic = extra.getTtsBean().getProgress() + "";
 			break;
+		case HandlerWhat.WEATHER:
+			mTemper = extra.getWeatherData().getTemp();
+			break;
 		default:
 			break;
 		}

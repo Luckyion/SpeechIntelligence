@@ -2,6 +2,8 @@
 
 import java.io.Serializable;
 
+import me.videa.functions.weather.WeatherData;
+
 public class ExtraBean implements Serializable{
 	
 	/**
@@ -20,6 +22,8 @@ public class ExtraBean implements Serializable{
 	private TTSBean ttsBean;
 	
 	private RecognitionBean recognitionBean;
+	
+	private WeatherData weatherData;
 
 	public int getSingleStrength() {
 		return singleStrength;
@@ -67,6 +71,14 @@ public class ExtraBean implements Serializable{
 
 	public void setRecognitionBean(RecognitionBean recognitionBean) {
 		this.recognitionBean = recognitionBean;
+	}
+
+	public WeatherData getWeatherData() {
+		return weatherData;
+	}
+
+	public void setWeatherData(WeatherData weatherData) {
+		this.weatherData = weatherData;
 	}
 	
 	
